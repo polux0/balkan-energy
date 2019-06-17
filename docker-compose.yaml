@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+
+  energy-node:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /src
+    volumes:
+      - ./app/:/src
+    environment:
+      - MYSQL_DATABASE=eergy
+      - MYSQL_HOST=balkan-energy-database-server
+      - MYSQL_PORT=33061
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=Up6KjbnEV4Hgfo75YM393QdQsK3Z0aTNBz0DoirrW+c
+      - INFURA_API_KEY=9ba2ced9fa6345ddb1b20992630b885d
+    ports:
+      - 3001:3001
+    container_name: "energy-node"
+
+    networks:
+      - energy-network
+
+networks:
+  energy-network:
+    name: energy-network

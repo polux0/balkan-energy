@@ -1,0 +1,27 @@
+version: '3.5'
+services:
+
+  # The Database
+  balkan-energy-database-server:
+    image: mysql:5.6
+    volumes:
+      - balkan-energy-database-server:/var/lib/mysql
+    environment:
+      - "MYSQL_DATABASE=energy"
+      - "MYSQL_PORT=3306"
+      - "MYSQL_USER=eth_user_local"
+      - "MYSQL_PASSWORD=eth_password_loc"
+      - "MYSQL_ROOT_PASSWORD=Up6KjbnEV4Hgfo75YM393QdQsK3Z0aTNBz0DoirrW+c"
+    networks:
+      - energy-network
+    ports:
+        - "33061:3306"
+    container_name: "balkan-energy-database-server"
+
+networks:
+  energy-network:
+    name: energy-network
+
+volumes: 
+  balkan-energy-database-server:
+
