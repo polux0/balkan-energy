@@ -7,7 +7,15 @@ module.exports = {
     database: 'environment',
     host: process.env.MYSQL_HOST,
     port: '33061',
-    dialect: 'mysql'
+    dialect: 'mysql',
+    migrationStorage: "json",
+
+
+    // Use a different file name. Default: sequelize-meta.json
+    migrationStoragePath: 'migrations.json',
+
+    // Use a different table name. Default: SequelizeMeta
+    migrationStorageTableName: 'migrations',
   },
   test: {
     username: 'database_test',
