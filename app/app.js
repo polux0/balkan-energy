@@ -30,9 +30,10 @@ app.get('/', (req, res) =>
     })
     .catch(err => {
       console.error('Unable to connect to the database:', err);
+      res.send(err);
     })
     .then(()=> {
-      res.send('Testing sequelizer');
+      res.send('Testing sequelizer: sucess');
     })
    
 });

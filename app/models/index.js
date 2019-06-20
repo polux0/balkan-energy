@@ -9,25 +9,25 @@ const config = require(__dirname + '/../app/config/config.json')[env];
 const db = {};
 
 let sequelize;
-// if (config.use_env_variable) {
-//   sequelize = new Sequelize(process.env[config.use_env_variable], config);
-// } else {
-//   sequelize = new Sequelize(config.database, config.username, config.password, config);
-// }
-sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, 
-  {
-    host: process.env.MYSQL_HOST,
-    port: '3306',
-    dialect: 'mysql',
-    pool: 
-    {
-      max: 10,
-      min: 0,
-      acquire: 30000,
-      idle: 10000
-    }
+if (config.use_env_variable) {
+  sequelize = new Sequelize(process.env[config.use_env_variable], config);
+} else {
+  sequelize = new Sequelize(config.database, config.username, config.password, config);
+}
+// sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, 
+//   {
+//     host: process.env.MYSQL_HOST,
+//     port: '33061',
+//     dialect: 'mysql',
+//     pool: 
+//     {
+//       max: 10,
+//       min: 0,
+//       acquire: 30000,
+//       idle: 10000
+//     }
     
-  });
+//   });
 
 fs
   .readdirSync(__dirname)
