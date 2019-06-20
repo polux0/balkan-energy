@@ -1,2 +1,2 @@
 # balkan-repository
-mapping data about electric energy in Balkans
+mapping data about electric energy consumption, trade and production in Balkans
