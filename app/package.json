@@ -2,7 +2,7 @@
   "name": "balkan-energy",
   "version": "1.0.0",
   "description": "Unique application that collects & analyise electrical energy consumption, trade-ing and production in Balkan region",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
