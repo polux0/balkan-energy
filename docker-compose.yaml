@@ -9,7 +9,7 @@ services:
     volumes:
       - ./app/:/src
     environment:
-      - MYSQL_DATABASE=eergy
+      - MYSQL_DATABASE=energy
       - MYSQL_HOST=balkan-energy-database-server
       - MYSQL_PORT=33061
       - MYSQL_USER=root
