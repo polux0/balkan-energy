@@ -1,0 +1,13 @@
+list:
+
+1. extend previously used containers and create different enviornment in order to be compatible
+with sequelize;
+2. spin Windows 10 Virtual Machine in order to modify generated sql ( from Power Designer );
+3. redesign database: [ add manually_changed as column in every table, create table for Futures,
+create more tables per specification ];
+
+progress: 
+
+1. /
+2. /
+3. /
