@@ -14,20 +14,6 @@ if (config.use_env_variable) {
 } else {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
-// sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, 
-//   {
-//     host: process.env.MYSQL_HOST,
-//     port: '33061',
-//     dialect: 'mysql',
-//     pool: 
-//     {
-//       max: 10,
-//       min: 0,
-//       acquire: 30000,
-//       idle: 10000
-//     }
-    
-//   });
 
 fs
   .readdirSync(__dirname)
