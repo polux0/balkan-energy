@@ -5,11 +5,12 @@
 
 
 /*==============================================================*/
-/* Table: AUCTIONDAILY                                          */
+/* Table: AUCTIONDAILY ( 0 - automatically inserted value )
+                       ( 1 - manually inserted value)                                         */
 /*==============================================================*/
 create table AUCTIONDAILY 
 (
-   AUCTIONYEARLYID3     integer                        not null,
+   AUCTIONYEARLYID3     integer                        not null AUTO_INCREMENT,
    AUCTIONDAILYCODE     varchar(32)                    null,
    AUCTIONDAILYDISPLAY  varchar(32)                    null,
    AUCTIONDAILYTIME     timestamp                      null,
@@ -17,7 +18,7 @@ create table AUCTIONDAILY
    AUCTIONDAILYCAPACITY decimal(10,3)                  null,
    AUCTIONDAILYMEASURE1 varchar(32)                    null,
    AUCTIONDAILYMEASURE2 varchar(32)                    null,
-   AUCTIONAUTOMACLYUPDATED integer                        null,
+   AUCTIONAUTOMACLYUPDATED integer                     null DEFAULT '0',
    constraint PK_AUCTIONDAILY primary key (AUCTIONYEARLYID3)
 );
 
@@ -33,7 +34,7 @@ AUCTIONYEARLYID3 ASC
 /*==============================================================*/
 create table AUCTIONMONTHLY 
 (
-   AUCTIONYEARLYID2     integer                        not null,
+   AUCTIONYEARLYID2     integer                        not null AUTO_INCREMENT,
    AUCTIONDAILYCODE     varchar(32)                    null,
    AUCTIONDAILYDISPLAY  varchar(32)                    null,
    AUCTIONDAILYTIME     timestamp                      null,
@@ -41,7 +42,7 @@ create table AUCTIONMONTHLY
    AUCTIONDAILYCAPACITY decimal(10,3)                  null,
    AUCTIONDAILYMEASURE1 varchar(32)                    null,
    AUCTIONDAILYMEASURE2 varchar(32)                    null,
-   AUTOMATICALYUPDATED  integer                        null,
+   AUTOMATICALYUPDATED  integer                        null DEFAULT '0',
    constraint PK_AUCTIONMONTHLY primary key (AUCTIONYEARLYID2)
 );
 
@@ -57,7 +58,7 @@ AUCTIONYEARLYID2 ASC
 /*==============================================================*/
 create table AUCTIONYEARLY 
 (
-   AUCTIONYEARLYID      integer                        not null,
+   AUCTIONYEARLYID      integer                        not null AUTO_INCREMENT,
    AUCTIONDAILYCODE     varchar(32)                    null,
    AUCTIONDAILYDISPLAY  varchar(32)                    null,
    AUCTIONDAILYTIME     timestamp                      null,
@@ -65,7 +66,7 @@ create table AUCTIONYEARLY
    AUCTIONDAILYCAPACITY decimal(10,3)                  null,
    AUCTIONDAILYMEASURE1 varchar(32)                    null,
    AUCTIONDAILYMEASURE2 varchar(32)                    null,
-   AUCTIONYEARLYAUTOMACLYUPDATED integer                        null,
+   AUCTIONYEARLYAUTOMACLYUPDATED integer                        null DEFAULT '0',
    constraint PK_AUCTIONYEARLY primary key (AUCTIONYEARLYID)
 );
 
@@ -81,13 +82,13 @@ AUCTIONYEARLYID ASC
 /*==============================================================*/
 create table COMMERCIALFLOWS 
 (
-   COMMERCIALFLOWID     integer                        not null,
+   COMMERCIALFLOWID     integer                        not null AUTO_INCREMENT,
    PHYSICALFLOWCODE     varchar(32)                    null,
    PHYSICALFLOWDISPLAY  varchar(32)                    null,
    PHYSICALFLOWMEASURE  varchar(32)                    null,
    PHYSICALFLOWTIME     timestamp                      null,
    PHYSICALFLOWVALUE    decimal(10,3)                  null,
-   PHYSICALAUTOMACLYUPDATED integer                        null,
+   PHYSICALAUTOMACLYUPDATED integer                        null DEFAULT '0',
    constraint PK_COMMERCIALFLOWS primary key (COMMERCIALFLOWID)
 );
 
@@ -103,7 +104,7 @@ COMMERCIALFLOWID ASC
 /*==============================================================*/
 create table CONSUMPTION 
 (
-   CONSUMPTIONID        integer                        not null,
+   CONSUMPTIONID        integer                        not null AUTO_INCREMENT,
    COUNTRYID            integer                        null,
    CONSUMPTIONCODE      varchar(32)                    null,
    CONSUMPTIONDISPLAY   varchar(32)                    null,
@@ -111,7 +112,7 @@ create table CONSUMPTION
    CONSUMPTIONTIME      timestamp                      null,
    CONSUMPTIONPOTENCIAL decimal(10,3)                  null,
    CONSUMPTIONREALISED  decimal(10,3)                  null,
-   CONSUMPTIONAUTOMACLYUPDATED integer                        null,
+   CONSUMPTIONAUTOMACLYUPDATED integer                        null DEFAULT '0',
    constraint PK_CONSUMPTION primary key (CONSUMPTIONID)
 );
 
@@ -134,11 +135,11 @@ COUNTRYID ASC
 /*==============================================================*/
 create table COUNTRY 
 (
-   COUNTRYID            integer                        not null,
+   COUNTRYID            integer                        not null AUTO_INCREMENT,
    COUNTRYCODE          varchar(32)                    null,
    COUNTRYDISPLAY       varchar(32)                    null,
    COUNTRYMEASURE       varchar(32)                    null,
-   COUNTRYAUTOMACLYUPDATED integer                        null,
+   COUNTRYAUTOMACLYUPDATED integer                        null DEFAULT '0',
    constraint PK_COUNTRY primary key (COUNTRYID)
 );
 
@@ -154,13 +155,13 @@ COUNTRYID ASC
 /*==============================================================*/
 create table PHYSICALFLOW 
 (
-   COMMERCIALFLOWID2    integer                        not null,
+   COMMERCIALFLOWID2    integer                        not null AUTO_INCREMENT,
    PHYSICALFLOWCODE     varchar(32)                    null,
    PHYSICALFLOWDISPLAY  varchar(32)                    null,
    PHYSICALFLOWMEASURE  varchar(32)                    null,
    PHYSICALFLOWTIME     timestamp                      null,
    PHYSICALFLOWVALUE    decimal(10,3)                  null,
-   PHYSICALFLOWAUTOMACLYUPDATED integer                        null,
+   PHYSICALFLOWAUTOMACLYUPDATED integer                        null DEFAULT '0',
    constraint PK_PHYSICALFLOW primary key (COMMERCIALFLOWID2)
 );
 
@@ -176,7 +177,7 @@ COMMERCIALFLOWID2 ASC
 /*==============================================================*/
 create table PRODUCTION 
 (
-   PRODUCTIONID         integer                        not null,
+   PRODUCTIONID         integer                        not null AUTO_INCREMENT,
    COUNTRYID            integer                        null,
    PRODUCTIONCODE       varchar(32)                    null,
    PRODUCTIONMEASURE    varchar(32)                    null,
@@ -185,7 +186,7 @@ create table PRODUCTION
    PRODUCTIONTYPE       varchar(32)                    null,
    PRODUCTIONSUBTYPE    varchar(32)                    null,
    PRODUCTIONDISPLAY    varchar(32)                    null,
-   PRODUCTIONAUTOMACLYUPDATED integer                        null,
+   PRODUCTIONAUTOMACLYUPDATED integer                        null DEFAULT '0',
    constraint PK_PRODUCTION primary key (PRODUCTIONID)
 );
 
@@ -368,14 +369,14 @@ AUCTIONYEARLYID ASC
 /*==============================================================*/
 create table SPOT 
 (
-   SPOTID               integer                        not null,
+   SPOTID               integer                        not null AUTO_INCREMENT,
    COUNTRYID            integer                        null,
    SPOTCODE             varchar(32)                    null,
    SPOTDISPLAY          varchar(32)                    null,
    SPOTMEASURE          varchar(32)                    null,
    SPOTTIME             timestamp                      null,
    SPOTVALUE            decimal(10,3)                  null,
-   SPOTAUTOMACLYUPDATED integer                        null,
+   SPOTAUTOMACLYUPDATED integer                        null DEFAULT '0',
    constraint PK_SPOT primary key (SPOTID)
 );
 

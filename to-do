@@ -5,7 +5,7 @@ with sequelize;
 2. spin Windows 10 Virtual Machine in order to modify generated sql ( from Power Designer );
 3. redesign database: [ add manually_changed as column in every table, create table for Futures,
 create more tables per specification ];
-
+4. use latest mysql script ( test04.mysql )
 progress: 
 
 1. /
