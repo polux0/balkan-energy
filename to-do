@@ -6,8 +6,15 @@ with sequelize;
 3. redesign database: [ add manually_changed as column in every table, create table for Futures,
 create more tables per specification ];
 4. use latest mysql script ( test04.mysql, manually added auto_incerement )
+5. create connection pooling in `config.js`
+
+
+
 progress: 
+
 
 1. /
 2. /
 3. /
+4. done;
+5. /

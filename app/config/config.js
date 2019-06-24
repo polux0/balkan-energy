@@ -4,12 +4,13 @@ module.exports = {
   development: {
     username: 'root',
     password: 'Up6KjbnEV4Hgfo75YM393QdQsK3Z0aTNBz0DoirrW+c',
-    database: 'environment',
+    database: 'energy',
     host: process.env.MYSQL_HOST,
     port: '33061',
     dialect: 'mysql',
     // Use a different table name. Default: SequelizeMeta
     migrationStorageTableName: 'migrations',
+    freezeTableName: true
   },
   test: {
     username: 'database_test',
