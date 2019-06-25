@@ -1,12 +1,19 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('s', {
+    return queryInterface.createTable('physicalflows', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
+      },
+      countryId: {
+        type: Sequelize.INTEGER,
+        references: {
+         model: "country",
+         key: "id"
+        }
       },
       code: {
         type: Sequelize.STRING
@@ -37,6 +44,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('s');
+    return queryInterface.dropTable('physicalflows');
   }
 };
