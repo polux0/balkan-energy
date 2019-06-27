@@ -17,10 +17,11 @@
   },
   "homepage": "https://github.com/polux0/balkan-energy#readme",
   "dependencies": {
+    "eslint": "^6.0.1",
     "express": "^4.17.1",
     "mysql2": "^1.6.5",
     "nodemon": "^1.19.1",
-    "sequelize": "^5.8.10",
+    "sequelize": "^6.0.0",
     "sequelize-cli": "^5.5.0"
   }
 }
