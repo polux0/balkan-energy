@@ -4,6 +4,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     
     return queryInterface.bulkInsert('spot', [{
+      
         countryId: 4,
         code: 'spot-something',
         displayCode: 'spot-another-something',
