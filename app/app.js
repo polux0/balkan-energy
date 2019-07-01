@@ -5,10 +5,13 @@ const app = express()
 const port = 3001
 
 const {country} = require('./models');
+const {consumption} = require('./models');
 
 const countryRouter = require('./routes/api/v1/country');
+const consumptionRouter = require('./routes/api/v1/consumption');
 
 app.use('/countries', countryRouter);
+app.use('/consumption', consumptionRouter);
 
 // const Sequelize = require('sequelize');
 
@@ -33,14 +36,24 @@ app.get('/', async (req, res) =>
 {
 
 
-  let a = await country.findOne({ where: { id: 7 } })
+  // let a = await country.findOne({ where: { id: 7 } })
+  // let b = await country.create(
+  //   {
+  //     code: 'BIH',
+  //     displayCode: 'Bosnia',
+  //     measure: 'head'
+  //   })
   let b = await country.create(
     {
-      code: 'BIH',
-      displayCode: 'Bosnia',
-      measure: 'head'
-    })
-  res.status(200).json(a);
+        code: 'HR',
+        display: 'CONS-HR',
+        measure: 'Measure',
+        timestamp: '0000-00-00 00:00:00',
+        potential: 10.51,
+        realised: 7.79,
+        automaticallyUpdated: 1
+  })
+  res.status(200).json(b);
 
   // sequelize
   // .authenticate()

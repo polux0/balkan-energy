@@ -2,7 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   const consumption = sequelize.define('consumption', {
     code: DataTypes.STRING,
-    display: DataTypes.STRING,
+    displayCode: DataTypes.STRING,
     measure: DataTypes.STRING,
     timestamp: DataTypes.DATE,
     potential: DataTypes.DECIMAL,
