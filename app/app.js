@@ -6,6 +6,10 @@ const port = 3001
 
 const {country} = require('./models');
 
+const countryRouter = require('./routes/api/v1/country');
+
+app.use('/countries', countryRouter);
+
 // const Sequelize = require('sequelize');
 
 // const sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, 
@@ -28,8 +32,16 @@ const {country} = require('./models');
 app.get('/', async (req, res) =>
 {
 
+
   let a = await country.findOne({ where: { id: 7 } })
+  let b = await country.create(
+    {
+      code: 'BIH',
+      displayCode: 'Bosnia',
+      measure: 'head'
+    })
   res.status(200).json(a);
+
   // sequelize
   // .authenticate()
   // .then(() => {
