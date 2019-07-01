@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamp: DataTypes.DATE,
     value: DataTypes.DECIMAL,
     automaticallyUpdated: DataTypes.INTEGER
-  }, {});
+  }, {freezeTableName: true});
   spot.associate = function(models) {
     // associations can be defined here
   };

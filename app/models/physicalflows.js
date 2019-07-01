@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     timestamp: DataTypes.DATE,
     value: DataTypes.DECIMAL,
     automaticallyUpdated: DataTypes.INTEGER
-  }, {});
+  }, {freezeTableName: true});
   physicalflows.associate = function(models) {
     // associations can be defined here
   };

@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
     subtype: DataTypes.STRING,
     displayCode: DataTypes.STRING,
     automaticallyUpdated: DataTypes.INTEGER
-  }, {});
+  }, {freezeTableName: true});
   production.associate = function(models) {
     // associations can be defined here
   };

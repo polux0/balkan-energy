@@ -1,8 +1,9 @@
 'use strict';
-
 module.exports = {
+  
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('consumption', {
+
+    return queryInterface.createTable('spot', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,7 +20,7 @@ module.exports = {
       code: {
         type: Sequelize.STRING
       },
-      display: {
+      displayCode: {
         type: Sequelize.STRING
       },
       measure: {
@@ -28,14 +29,12 @@ module.exports = {
       timestamp: {
         type: Sequelize.DATE
       },
-      potential: {
-        type: Sequelize.DECIMAL
-      },
-      realised: {
-        type: Sequelize.DECIMAL
+      value: {
+        type: Sequelize.DECIMAL(10,3)
       },
       automaticallyUpdated: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        default: '0'
       },
       createdAt: {
         allowNull: false,
@@ -48,6 +47,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('consumption');
+    return queryInterface.dropTable('spot');
   }
 };

@@ -1,21 +1,41 @@
 'use strict';
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('spots', {
+    return queryInterface.createTable('consumption', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      firstName: {
+      countryId: {
+        type: Sequelize.INTEGER,
+        references: {
+         model: "country",
+         key: "id"
+        }
+      },
+      code: {
         type: Sequelize.STRING
       },
-      lastName: {
+      displayCode: {
         type: Sequelize.STRING
       },
-      email: {
+      measure: {
         type: Sequelize.STRING
+      },
+      timestamp: {
+        type: Sequelize.DATE
+      },
+      potential: {
+        type: Sequelize.DECIMAL
+      },
+      realised: {
+        type: Sequelize.DECIMAL
+      },
+      automaticallyUpdated: {
+        type: Sequelize.INTEGER
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +48,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('spots');
+    return queryInterface.dropTable('consumption');
   }
 };
