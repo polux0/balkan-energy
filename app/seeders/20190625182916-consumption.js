@@ -8,7 +8,7 @@ module.exports = {
       
       countryId: 1,
       code: 'code',
-      display: 'display',
+      displayCode: 'display',
       measure: 'measure',
       timestamp: '0000-00-00 00:00:00',
       potential: 'potential',

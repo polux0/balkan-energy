@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('spot', {
+    return queryInterface.createTable('production', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -19,9 +19,6 @@ module.exports = {
       code: {
         type: Sequelize.STRING
       },
-      displayCode: {
-        type: Sequelize.STRING
-      },
       measure: {
         type: Sequelize.STRING
       },
@@ -30,6 +27,15 @@ module.exports = {
       },
       value: {
         type: Sequelize.DECIMAL(10,3)
+      },
+      type: {
+        type: Sequelize.STRING
+      },
+      subtype: {
+        type: Sequelize.STRING
+      },
+      displayCode: {
+        type: Sequelize.STRING
       },
       automaticallyUpdated: {
         type: Sequelize.INTEGER
@@ -45,6 +51,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('spot');
+    return queryInterface.dropTable('production');
   }
 };

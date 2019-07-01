@@ -19,7 +19,7 @@ module.exports = {
       code: {
         type: Sequelize.STRING
       },
-      displayCode: {
+      display: {
         type: Sequelize.STRING
       },
       measure: {

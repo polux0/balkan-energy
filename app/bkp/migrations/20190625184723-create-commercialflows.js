@@ -1,8 +1,7 @@
 'use strict';
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('consumption', {
+    return queryInterface.createTable('commercialflows', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -28,10 +27,7 @@ module.exports = {
       timestamp: {
         type: Sequelize.DATE
       },
-      potential: {
-        type: Sequelize.DECIMAL
-      },
-      realised: {
+      value: {
         type: Sequelize.DECIMAL
       },
       automaticallyUpdated: {
@@ -48,6 +44,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('consumption');
+    return queryInterface.dropTable('commercialflows');
   }
 };

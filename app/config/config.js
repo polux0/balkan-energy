@@ -1,4 +1,7 @@
+'use strict';
 const fs = require('fs');
+
+// Use a different table name - @migrationStorageTableName. Default: `SequelizeMeta`
 
 module.exports = {
   development: {
@@ -8,7 +11,6 @@ module.exports = {
     host: process.env.MYSQL_HOST,
     port: '33061',
     dialect: 'mysql',
-    // Use a different table name. Default: SequelizeMeta
     migrationStorageTableName: 'migrations',
     freezeTableName: true
   },
@@ -25,6 +27,7 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOSTNAME,
     dialect: 'mysql',
+    // in case we need to import certificate;
     // dialectOptions: {
     //   ssl: {
     //     ca: fs.readFileSync(__dirname + '/mysql-ca-master.crt')
