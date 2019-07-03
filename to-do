@@ -1,13 +1,13 @@
+note to myself: 
+
+1. when running new migrations change /config/config.js file to connect on 33061 port, in every other case it will not work ( it works on 3306 );
+
+
 list:
 
 1. extend previously used containers and create different enviornment in order to be compatible
 with sequelize;
-2. spin Windows 10 Virtual Machine in order to modify generated sql ( from Power Designer );
-3. redesign database: [ add manually_changed as column in every table, create table for Futures,
-create more tables per specification ];
-4. use latest mysql script ( test04.mysql, manually added auto_incerement )
-5. create connection pooling in `config.js`
-
+2. create connection pooling in `config.js`
 
 
 progress: 
@@ -15,6 +15,4 @@ progress:
 
 1. /
 2. /
-3. /
-4. done;
-5. /
+
