@@ -5,7 +5,8 @@ module.exports = {
     
     return queryInterface.bulkInsert('commercialflows', [{
 
-        countryId: 4,
+        firstCountryId: 4,
+        secondCountryId: 1,
         code: false,
         displayCode: 'displayCode',
         measure: 'measure',

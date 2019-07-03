@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('commercialflows', {
+    return queryInterface.createTable('auctionDaily', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -31,14 +31,20 @@ module.exports = {
       timestamp: {
         type: Sequelize.DATE
       },
-      measure: {
-        type: Sequelize.STRING
+      capacity: {
+        type: Sequelize.DECIMAL(10,3)
+      },
+      atc: {
+        type: Sequelize.DECIMAL(10,3)
       },
       value: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10,3)
       },
-      automaticallyUpdated: {
-        type: Sequelize.INTEGER
+      measure1: {
+        type: Sequelize.STRING
+      },
+      measure2: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
@@ -51,6 +57,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('commercialflows');
+    return queryInterface.dropTable('auctionDaily');
   }
 };

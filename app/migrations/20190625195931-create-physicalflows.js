@@ -8,7 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      countryId: {
+      firstCountryId: {
+        type: Sequelize.INTEGER,
+        references: {
+         model: "country",
+         key: "id"
+        }
+      },
+      secondCountryId: {
         type: Sequelize.INTEGER,
         references: {
          model: "country",
@@ -21,11 +28,11 @@ module.exports = {
       displayCode: {
         type: Sequelize.STRING
       },
-      measure: {
-        type: Sequelize.STRING
-      },
       timestamp: {
         type: Sequelize.DATE
+      },
+      measure: {
+        type: Sequelize.STRING
       },
       value: {
         type: Sequelize.DECIMAL
