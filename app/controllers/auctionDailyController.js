@@ -35,6 +35,7 @@ module.exports =
             return res.status(400).json(error);
 
         }
+        console.log('why not? :O');
         console.log('result: ', result);
         return res.status(200).json(result);
     }

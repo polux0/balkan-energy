@@ -15,11 +15,11 @@ const {auctionDaily} =  require('./models');
 
 const auctionDailyController = require('./controllers/auctionDailyController');
 
-const countryRouter = require('./routes/api/v1/country');
-const consumptionRouter = require('./routes/api/v1/consumption');
+// const countryRouter = require('./routes/api/v1/country');
+// const consumptionRouter = require('./routes/api/v1/consumption');
 
-app.use('/countries', countryRouter);
-app.use('/consumption', consumptionRouter);
+// app.use('/countries', countryRouter);
+// app.use('/consumption', consumptionRouter);
 
 // const Sequelize = require('sequelize');
 
