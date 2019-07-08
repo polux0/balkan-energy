@@ -6,6 +6,7 @@ const port = 3001
 
 const {country} = require('./models');
 const {consumption} = require('./models');
+const {auctionDaily} =  require('./models');
 
 const countryRouter = require('./routes/api/v1/country');
 const consumptionRouter = require('./routes/api/v1/consumption');
@@ -35,25 +36,33 @@ app.use('/consumption', consumptionRouter);
 app.get('/', async (req, res) =>
 {
 
+  // let auction = await auctionDaily.create
+  // ({
+  //   secondCountryId: 1,
+  //   code: '5',
+  //   displayCode: '5',
+  //   timestamp: '0000-00-00 00:00:00',
+  //   capacity: 10.51,
+  //   value: 10.51,
+  //   measure1: 'lol',
+  //   measure2: 'anotherlol'
+  // })
+    
+  let destroy = await auctionDaily.destroy({where: { id: 3}})
 
-  // let a = await country.findOne({ where: { id: 7 } })
+  res.status(200).json(destroy);
+  // res.status(200).json(auction);
+
   // let b = await country.create(
   //   {
-  //     code: 'BIH',
-  //     displayCode: 'Bosnia',
-  //     measure: 'head'
-  //   })
-  let b = await country.create(
-    {
-        code: 'HR',
-        display: 'CONS-HR',
-        measure: 'Measure',
-        timestamp: '0000-00-00 00:00:00',
-        potential: 10.51,
-        realised: 7.79,
-        automaticallyUpdated: 1
-  })
-  res.status(200).json(b);
+  //       code: 'HR',
+  //       display: 'CONS-HR',
+  //       measure: 'Measure',
+  //       timestamp: '0000-00-00 00:00:00',
+  //       potential: 10.51,
+  //       realised: 7.79,
+  //       automaticallyUpdated: 1
+  // })
 
   // sequelize
   // .authenticate()

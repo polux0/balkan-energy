@@ -1,6 +1,9 @@
 'use strict';
+
 module.exports = (sequelize, DataTypes) => {
   const auctionDaily = sequelize.define('auctionDaily', {
+    firstCountryId: DataTypes.INTEGER,
+    secondCountryId: DataTypes.INTEGER,
     code: DataTypes.STRING,
     displayCode: DataTypes.STRING,
     timestamp: DataTypes.DATE,
@@ -9,9 +12,19 @@ module.exports = (sequelize, DataTypes) => {
     value: DataTypes.DECIMAL,
     measure1: DataTypes.STRING,
     measure2: DataTypes.STRING
-  }, {});
-  auctionDaily.associate = function(models) {
-    // associations can be defined here
-  };
-  return auctionDaily;
+  }, {freezeTableName: true});
+  
+  auctionDaily.associate = (models) =>
+    {
+      auctionDaily.hasMany(models.country, {
+        foreignKey: 'firstCountryId'
+      });
+
+      auctionDaily.hasMany(models.country, {
+        foreignKey: 'secondCountryId'
+      });
+
+    };
+
+    return auctionDaily;
 };
