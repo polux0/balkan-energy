@@ -1,12 +1,19 @@
 'use strict';
 
 const express = require('express')
+const bodyParser = require('body-parser');
+
 const app = express()
 const port = 3001
+
+app.use(bodyParser.json());
+
 
 const {country} = require('./models');
 const {consumption} = require('./models');
 const {auctionDaily} =  require('./models');
+
+const auctionDailyController = require('./controllers/auctionDailyController');
 
 const countryRouter = require('./routes/api/v1/country');
 const consumptionRouter = require('./routes/api/v1/consumption');
@@ -36,6 +43,7 @@ app.use('/consumption', consumptionRouter);
 app.get('/', async (req, res) =>
 {
 
+
   // let auction = await auctionDaily.create
   // ({
   //   secondCountryId: 1,
@@ -48,9 +56,9 @@ app.get('/', async (req, res) =>
   //   measure2: 'anotherlol'
   // })
     
-  let destroy = await auctionDaily.destroy({where: { id: 3}})
+  // let destroy = await auctionDaily.destroy({where: { id: 3}})
 
-  res.status(200).json(destroy);
+  // res.status(200).json(destroy);
   // res.status(200).json(auction);
 
   // let b = await country.create(
@@ -79,5 +87,6 @@ app.get('/', async (req, res) =>
   // })
    
 });
+app.post('/auction', auctionDailyController.create);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
