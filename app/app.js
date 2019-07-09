@@ -15,15 +15,7 @@ const {auctionDaily} =  require('./models');
 
 
 require('./routes/api/v1/')(app);
-//const auctionDailyController = require('./controllers/auctionDailyController');
 
-// const countryRouter = require('./routes/api/v1/country');
-// const consumptionRouter = require('./routes/api/v1/consumption');
-
-// app.use('/countries', countryRouter);
-// app.use('/consumption', consumptionRouter);
-
-// const Sequelize = require('sequelize');
 
 // const sequelize = new Sequelize(process.env.MYSQL_DATABASE, process.env.MYSQL_USER, process.env.MYSQL_PASSWORD, 
 // {
@@ -45,34 +37,35 @@ require('./routes/api/v1/')(app);
 app.get('/', async (req, res) =>
 {
 
+  var fs = require("fs");
 
-  // let auction = await auctionDaily.create
-  // ({
-  //   secondCountryId: 1,
-  //   code: '5',
-  //   displayCode: '5',
-  //   timestamp: '0000-00-00 00:00:00',
-  //   capacity: 10.51,
-  //   value: 10.51,
-  //   measure1: 'lol',
-  //   measure2: 'anotherlol'
-  // })
-    
-  // let destroy = await auctionDaily.destroy({where: { id: 3}})
+  var exceltojson = require("xlsx-to-json-lc");
 
-  // res.status(200).json(destroy);
-  // res.status(200).json(auction);
 
-  // let b = await country.create(
-  //   {
-  //       code: 'HR',
-  //       display: 'CONS-HR',
-  //       measure: 'Measure',
-  //       timestamp: '0000-00-00 00:00:00',
-  //       potential: 10.51,
-  //       realised: 7.79,
-  //       automaticallyUpdated: 1
-  // })
+  var fs = require("fs");
+  var filename = "app/utils/auction-daily-sample.xlsx";
+
+    fs.readFile(__dirname + filename, "utf8", function(err, data) {
+        if (err) throw err;
+        console.log('excel file: ' + data);
+    });
+
+
+  exceltojson({
+    input: '../auction-daily-sample.xlsx',
+    // output: "if you want output to be stored in a file",
+    // sheet: "sheetname",  // specific sheetname inside excel file (if you have multiple sheets)
+    lowerCaseHeaders:true //to convert all excel headers to lowr case in json
+
+  }, function(err, result) {
+    if(err) {
+      console.error(err);
+    } else {
+      console.log(result);
+      //result will contain the overted json data
+    }
+  });
+
 
   // sequelize
   // .authenticate()
