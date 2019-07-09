@@ -13,7 +13,9 @@ const {country} = require('./models');
 const {consumption} = require('./models');
 const {auctionDaily} =  require('./models');
 
-const auctionDailyController = require('./controllers/auctionDailyController');
+
+require('./routes/api/v1/')(app);
+//const auctionDailyController = require('./controllers/auctionDailyController');
 
 // const countryRouter = require('./routes/api/v1/country');
 // const consumptionRouter = require('./routes/api/v1/consumption');
@@ -87,6 +89,7 @@ app.get('/', async (req, res) =>
   // })
    
 });
-app.post('/auction', auctionDailyController.create);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+// app.post('/auction', auctionDailyController.create);
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 

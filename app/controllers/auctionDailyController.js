@@ -19,6 +19,7 @@ module.exports =
                     secondCountryId: req.body.secondCountryId,
                     code: req.body.code,
                     displayCode: req.body.displayCode,
+                    //fixed for now; 
                     timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
                     capacity: req.body.capacity,
                     atc: req.body.atc,
