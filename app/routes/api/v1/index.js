@@ -9,4 +9,5 @@ module.exports = (app) => {
   }));
 
   app.post('/api/auction/daily/create', auctionDailyController.create);
+  app.get('/api/auction/daily/', auctionDailyController.list);
 };
