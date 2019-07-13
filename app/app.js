@@ -41,24 +41,36 @@ app.get('/', async (req, res) =>
 
   var exceltojson = require("xlsx-to-json-lc");
 
+  console.log('/dirname => ', __dirname + __filename);
+  console.log('/filename => ', __filename);
 
   var fs = require("fs");
-  var filename = "app/utils/auction-daily-sample.xlsx";
+  var filename = "/utils/excel-parser-scripts/auction-daily-sample.xlsx";
 
-    fs.readFile(__dirname + filename, "utf8", function(err, data) {
-        if (err) throw err;
-        console.log('excel file: ' + data);
-    });
 
+
+    // let testFile = fs.readFile(__dirname + filename, "utf8", function(err, data) {
+    //     if (err)
+    //     {
+    //       console.log('Error while trying to read file: ', err);
+    //       throw err;
+    //     }
+    //     // console.log('excel file: ' + data);
+    //     return data;
+    // });
+
+  let test = "" +__dirname + filename; 
+  console.log('testing path: ' + test);
 
   exceltojson({
-    input: '../auction-daily-sample.xlsx',
+    input: '/src/utils/excel-parser-scripts/auction-daily-sample.xlsx',
     // output: "if you want output to be stored in a file",
     // sheet: "sheetname",  // specific sheetname inside excel file (if you have multiple sheets)
     lowerCaseHeaders:true //to convert all excel headers to lowr case in json
 
   }, function(err, result) {
     if(err) {
+      console.error('error with reading excel: ');
       console.error(err);
     } else {
       console.log(result);
@@ -82,7 +94,5 @@ app.get('/', async (req, res) =>
   // })
    
 });
-
-// app.post('/auction', auctionDailyController.create);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 
