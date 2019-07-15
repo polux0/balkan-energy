@@ -39,44 +39,35 @@ app.get('/', async (req, res) =>
 
   var fs = require("fs");
 
-  var exceltojson = require("xlsx-to-json-lc");
 
-  console.log('/dirname => ', __dirname + __filename);
+  console.log('/dirname => ', __dirname);
   console.log('/filename => ', __filename);
 
-  var fs = require("fs");
-  var filename = "/utils/excel-parser-scripts/auction-daily-sample.xlsx";
-
-
-
-    // let testFile = fs.readFile(__dirname + filename, "utf8", function(err, data) {
-    //     if (err)
-    //     {
-    //       console.log('Error while trying to read file: ', err);
-    //       throw err;
-    //     }
-    //     // console.log('excel file: ' + data);
-    //     return data;
-    // });
-
   let test = "" +__dirname + filename; 
-  console.log('testing path: ' + test);
 
-  exceltojson({
-    input: '/src/utils/excel-parser-scripts/auction-daily-sample.xlsx',
-    // output: "if you want output to be stored in a file",
-    // sheet: "sheetname",  // specific sheetname inside excel file (if you have multiple sheets)
-    lowerCaseHeaders:true //to convert all excel headers to lowr case in json
 
-  }, function(err, result) {
-    if(err) {
-      console.error('error with reading excel: ');
-      console.error(err);
-    } else {
-      console.log(result);
-      //result will contain the overted json data
-    }
-  });
+  var fs = require("fs");
+  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.ods";
+
+  const XLXS = require('xlsx');
+
+  const workbook = XLXS.readFile(filename);
+
+  const sheetNameList = workbook.SheetNames;
+  
+  // let toMap = JSON.stringify(XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]));
+  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
+
+  let firstInsert = toMap.map
+  console.log('toMap: ', toMap);
+
+  toMap.map(element => {
+    console.log('timestamp: \n', element.timestamp);
+    console.log('capacity12: \n', element.capacity12);
+    console.log('price12: \n', element.price12);
+  })
+
+  res.send(toMap);
 
 
   // sequelize
