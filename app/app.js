@@ -36,17 +36,7 @@ require('./routes/api/v1/')(app);
 // });
 app.get('/', async (req, res) =>
 {
-
-  var fs = require("fs");
-
-
-  console.log('/dirname => ', __dirname);
-  console.log('/filename => ', __filename);
-
-  let test = "" +__dirname + filename; 
-
-
-  var fs = require("fs");
+  // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
   var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.ods";
 
   const XLXS = require('xlsx');
@@ -58,16 +48,30 @@ app.get('/', async (req, res) =>
   // let toMap = JSON.stringify(XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]));
   let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
 
-  let firstInsert = toMap.map
-  console.log('toMap: ', toMap);
+  let finalArray = [];
 
-  toMap.map(element => {
-    console.log('timestamp: \n', element.timestamp);
-    console.log('capacity12: \n', element.capacity12);
-    console.log('price12: \n', element.price12);
+  toMap.map((element, counter) => {
+
+    console.log('timestamp: ', element.timestamp);
+    console.log('capacity12: ', element.capacityHURS);
+    console.log('price12: ', element.PriceHURS);
+
+    console.log('timestamp: ', element.timestamp);
+    console.log('capacity12: ', element.capacityRSHU);
+    console.log('price12: ', element.priceRSHU);
+    
+
+    if(counter > 1)
+    {
+      finalArray.push({timestamp: element.timestamp, capacity:element.PriceHURS, price:element.PriceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
+    }
+
   })
 
-  res.send(toMap);
+  // console.log('Final array: ', finalArray);
+  res.send(finalArray);
+  
+  // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
 
 
   // sequelize

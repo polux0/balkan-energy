@@ -35,15 +35,6 @@ Object.keys(db).forEach(modelName => {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
-// sequelize
-// 		.authenticate()
-// 		.then(() => {
-// 			console.log('Connection has been established successfully.');
-// 		})
-// 		.catch((err) => {
-// 			console.log('Unable to connect to the database:', err);
-//     });
-
 db.country = require('./country')(sequelize, Sequelize);
 db.consumption = require('./consumption')(sequelize, Sequelize);
 
