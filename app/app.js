@@ -37,7 +37,8 @@ require('./routes/api/v1/')(app);
 app.get('/', async (req, res) =>
 {
   // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
-  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.ods";
+  // uzeti auction manual kao referentnu tačku;
+  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.xlsx";
 
   const XLXS = require('xlsx');
 
@@ -45,31 +46,33 @@ app.get('/', async (req, res) =>
 
   const sheetNameList = workbook.SheetNames;
   
-  // let toMap = JSON.stringify(XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]));
   let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
 
   let finalArray = [];
+  
+  console.log(toMap);
 
   toMap.map((element, counter) => {
 
-    console.log('timestamp: ', element.timestamp);
-    console.log('capacity12: ', element.capacityHURS);
-    console.log('price12: ', element.PriceHURS);
+    // console.log('Element: ');
+    console.log(element.priceHURS);
 
-    console.log('timestamp: ', element.timestamp);
-    console.log('capacity12: ', element.capacityRSHU);
-    console.log('price12: ', element.priceRSHU);
-    
-
-    if(counter > 1)
-    {
-      finalArray.push({timestamp: element.timestamp, capacity:element.PriceHURS, price:element.PriceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
-    }
+    // if(counter > 1)
+    // {
+    //   finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
+    //   // return AuctionDaily.create({
+    //     // timestamp:...
+    //   // });
+    // }
+    // finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
+   
 
   })
 
-  // console.log('Final array: ', finalArray);
-  res.send(finalArray);
+  // console.log('Final array: \n');
+  // console.log(finalArray);
+ 
+  res.status(200).send(toMap);
   
   // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
 
