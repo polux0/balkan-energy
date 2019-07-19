@@ -51,30 +51,34 @@ app.get('/', async (req, res) =>
   let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]], {header: 1});
   let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
 
-
   let finalArray = [];
 
   let headers = toMap[0].map(header => {
-    // console.log('type of header: ', typeof(header));
-    // console.log('header: ', header);  
+
     return header;
   })
+  // list all by headers;
 
-  // headers.map(header => {
-  //   console.log('header by header: ' + header);
-  // })
+  for(let a=0;a<headers.length;a++){
 
-  let timestamp = headers[1];
-
-
+    let timestamp = headers[a];
     result.map(element => {
   
       console.log(element[timestamp]);
     
     })
+
+  }
   
 
-  console.log(result[0][timestamp]);
+    // result.map(element => {
+  
+    //   console.log(element[timestamp]);
+    
+    // })
+  
+
+  // console.log(result[0][timestamp]);
   
   // console.log(toMap[0]);
   // console.log(a);
