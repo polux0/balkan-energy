@@ -46,21 +46,23 @@ app.get('/', async (req, res) =>
 
   const sheetNameList = workbook.SheetNames;
   
-  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]]);
+
+  // {header: 1} -> returns header as first array, results as anothers; 
+  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]], {header: 1});
 
   let finalArray = [];
 
-  // console.log(toMap);
-  let i = 0;
-  for(let key in toMap) 
-  {
-       if(i < 1){
+  let headers = toMap[0].map(header => {
+    // console.log('type of header: ', typeof(header));
+    // console.log('header: ', header);  
+    return header;
+  })
 
-        console.log(toMap[key]);
-        i++;
-       }
+  console.log('Headers only: ', headers);
 
-  }
+  
+  // console.log(toMap[0]);
+  // console.log(a);
    
   // }
   // toMap.map((element, counter) => {
@@ -102,7 +104,7 @@ app.get('/', async (req, res) =>
   // console.log('Final array: \n');
   // console.log(finalArray);
  
-  res.status(200).send(toMap);
+  res.status(200).send('eh');
   
   // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
 
