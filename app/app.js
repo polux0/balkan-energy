@@ -38,7 +38,7 @@ app.get('/', async (req, res) =>
 {
   // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
   // uzeti auction manual kao referentnu tačku;
-  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.xlsx";
+  var filename = "/src/utils/excel-parser-scripts/auctions-manual.xlsx";
 
   const XLXS = require('xlsx');
 
@@ -46,47 +46,58 @@ app.get('/', async (req, res) =>
 
   const sheetNameList = workbook.SheetNames;
   
-  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
+  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]]);
 
   let finalArray = [];
 
   // console.log(toMap);
+  let i = 0;
+  for(let key in toMap) 
+  {
+       if(i < 1){
 
-  toMap.map((element, counter) => {
+        console.log(toMap[key]);
+        i++;
+       }
 
-    // console.log('Element: ');
-    console.log(element[0]);
+  }
+   
+  // }
+  // toMap.map((element, counter) => {
 
-    //structure; 
-    // result = await auctionDaily.create
-    //         (
-    //             {
-    //                 firstCountryId: req.body.firstCountryId,
-    //                 secondCountryId: req.body.secondCountryId,
-    //                 code: req.body.code,
-    //                 displayCode: req.body.displayCode,
-    //                 //fixed for now; 
-    //                 timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-    //                 //
-    //                 capacity: req.body.capacity,
-    //                 atc: req.body.atc,
-    //                 value: req.body.value,
-    //                 measure1: req.body.measure1,
-    //                 measure2: req.body.measure2
-    //             }
-    //         );
+  //   // console.log('Element: ');
+  //   console.log(element);
 
-    // if(counter > 1)
-    // {
-    //   finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
-    //   // return AuctionDaily.create({
-    //     // timestamp:...
-    //   // });
-    // }
-    // finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
+  //   //structure; 
+  //   // result = await auctionDaily.create
+  //   //         (
+  //   //             {
+  //   //                 firstCountryId: req.body.firstCountryId,
+  //   //                 secondCountryId: req.body.secondCountryId,
+  //   //                 code: req.body.code,
+  //   //                 displayCode: req.body.displayCode,
+  //   //                 //fixed for now; 
+  //   //                 timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+  //   //                 //
+  //   //                 capacity: req.body.capacity,
+  //   //                 atc: req.body.atc,
+  //   //                 value: req.body.value,
+  //   //                 measure1: req.body.measure1,
+  //   //                 measure2: req.body.measure2
+  //   //             }
+  //   //         );
+
+  //   // if(counter > 1)
+  //   // {
+  //   //   finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
+  //   //   // return AuctionDaily.create({
+  //   //     // timestamp:...
+  //   //   // });
+  //   // }
+  //   // finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
    
 
-  })
+  // })
 
   // console.log('Final array: \n');
   // console.log(finalArray);
