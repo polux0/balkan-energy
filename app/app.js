@@ -64,11 +64,16 @@ app.get('/', async (req, res) =>
   //   console.log('header by header: ' + header);
   // })
 
-  //   result.map(element => {
-  //   console.log(element.headers[0]);
-  // })
-  let timestamp = headers[0];
+  let timestamp = headers[1];
+
+
+    result.map(element => {
   
+      console.log(element[timestamp]);
+    
+    })
+  
+
   console.log(result[0][timestamp]);
   
   // console.log(toMap[0]);
