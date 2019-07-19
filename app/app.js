@@ -49,13 +49,32 @@ app.get('/', async (req, res) =>
   let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
 
   let finalArray = [];
-  
-  console.log(toMap);
+
+  // console.log(toMap);
 
   toMap.map((element, counter) => {
 
     // console.log('Element: ');
-    console.log(element.priceHURS);
+    console.log(element[0]);
+
+    //structure; 
+    // result = await auctionDaily.create
+    //         (
+    //             {
+    //                 firstCountryId: req.body.firstCountryId,
+    //                 secondCountryId: req.body.secondCountryId,
+    //                 code: req.body.code,
+    //                 displayCode: req.body.displayCode,
+    //                 //fixed for now; 
+    //                 timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+    //                 //
+    //                 capacity: req.body.capacity,
+    //                 atc: req.body.atc,
+    //                 value: req.body.value,
+    //                 measure1: req.body.measure1,
+    //                 measure2: req.body.measure2
+    //             }
+    //         );
 
     // if(counter > 1)
     // {
