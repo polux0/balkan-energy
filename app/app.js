@@ -38,7 +38,7 @@ app.get('/', async (req, res) =>
 {
   // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
   // uzeti auction manual kao referentnu tačku;
-  var filename = "/src/utils/excel-parser-scripts/auctions-manual.xlsx";
+  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.xlsx";
 
   const XLXS = require('xlsx');
 
@@ -48,7 +48,9 @@ app.get('/', async (req, res) =>
   
 
   // {header: 1} -> returns header as first array, results as anothers; 
-  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]], {header: 1});
+  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]], {header: 1});
+  let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
+
 
   let finalArray = [];
 
@@ -58,8 +60,16 @@ app.get('/', async (req, res) =>
     return header;
   })
 
-  console.log('Headers only: ', headers);
+  // headers.map(header => {
+  //   console.log('header by header: ' + header);
+  // })
 
+  //   result.map(element => {
+  //   console.log(element.headers[0]);
+  // })
+  let timestamp = headers[0];
+  
+  console.log(result[0][timestamp]);
   
   // console.log(toMap[0]);
   // console.log(a);
