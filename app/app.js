@@ -92,32 +92,35 @@ app.get('/', async (req, res) =>
 
         for(let j = i+1, k = i+1; k < testArray.length; k++)
         {
+          console.log('for loop happend');            
+
           if(testArray[k].startsWith('price') && testArray[k].substring == ids){
+
+            console.log('swapped');            
 
             swap = testArray[j];
             testArray[j] = testArray[k];
             testArray[k] = swap;
-            console.log('swapped');            
           }
         }
     }
-    else if(testArray[i].startsWith('price'))
-    {
-      let ids1 = testArray[i].substring(testArray[i].length - 2, testArray[i].length);
-      let anotherSwap;
+    // else if(testArray[i].startsWith('price'))
+    // {
+    //   let ids1 = testArray[i].substring(testArray[i].length - 2, testArray[i].length);
+    //   let anotherSwap;
 
-        for(let l = i+1, m = i+1; m<testArray.length; m++)
-        {
-          if(testArray[l].startsWith('capacity') && testArray[l].substring == ids1)
-          {
-           swap = testArray[l];
-           testArray[l] = testArray[m];
-           testArray[m] = swap;
-           console.log('swapped');
-          }
-        }
+    //     for(let l = i+1, m = i+1; m<testArray.length; m++)
+    //     {
+    //       if(testArray[l].startsWith('capacity') && testArray[l].substring == ids1)
+    //       {
+    //        swap = testArray[l];
+    //        testArray[l] = testArray[m];
+    //        testArray[m] = swap;
+    //        console.log('swapped');
+    //       }
+    //     }
       
-    }
+    // }
   }
 
   console.log('Array after sorting: ', testArray);
