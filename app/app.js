@@ -73,10 +73,54 @@ app.get('/', async (req, res) =>
   })
 
   let timestamp = headers[0];
-  // delete headers[0] = timestamp;
-  headers.splice(0,1);
 
-  console.log(headers);
+  //try to sort an array; 
+
+  let testArray = ['capacity12', 'price21', 'price32', 'capacity21', 'capacity32', 'price12'];
+  //let testArray = ['price21', 'capacity12', 'price32', 'capacity21', 'capacity32', 'price12'];
+
+
+  console.log('test array before sorting: ');
+  console.log(testArray);
+
+  for(let i=0; i< testArray.length; i++){
+
+    if(testArray[i].startsWith('capacity'))
+    {
+      let swap;
+      let ids = testArray[i].substring(testArray[i].length - 2, testArray[i].length);
+
+        for(let j = i+1, k = i+1; k < testArray.length; k++)
+        {
+          if(testArray[k].startsWith('price') && testArray[k].substring == ids){
+
+            swap = testArray[j];
+            testArray[j] = testArray[k];
+            testArray[k] = swap;
+            console.log('swapped');            
+          }
+        }
+    }
+    else if(testArray[i].startsWith('price'))
+    {
+      let ids1 = testArray[i].substring(testArray[i].length - 2, testArray[i].length);
+      let anotherSwap;
+
+        for(let l = i+1, m = i+1; m<testArray.length; m++)
+        {
+          if(testArray[l].startsWith('capacity') && testArray[l].substring == ids1)
+          {
+           swap = testArray[l];
+           testArray[l] = testArray[m];
+           testArray[m] = swap;
+           console.log('swapped');
+          }
+        }
+      
+    }
+  }
+
+  console.log('Array after sorting: ', testArray);
 
   // for(let i = 0; i<headers.length; i++){
 
