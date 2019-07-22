@@ -36,8 +36,9 @@ require('./routes/api/v1/')(app);
 // });
 app.get('/', async (req, res) =>
 {
-  // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
-  // uzeti auction manual kao referentnu tačku;
+  // this should be function to extract from excel, prepare results in array, and then post to `auction/daily/create`
+  // uzeti auction manual kao referentnu tačku; ( testirati na `auction-daily-sample-to-become`);
+
   var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.xlsx";
 
   const XLXS = require('xlsx');
@@ -49,6 +50,8 @@ app.get('/', async (req, res) =>
 
   // {header: 1} -> returns header as first array, results as anothers; 
   let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]], {header: 1});
+  //
+
   let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
 
   let finalArray = [];
@@ -59,31 +62,51 @@ app.get('/', async (req, res) =>
   })
   // list all by headers;
 
-  for(let a=0;a<headers.length;a++){
+  headers.map((header, counter) => {
 
-    let timestamp = headers[a];
-    result.map(element => {
-  
-      console.log(element[timestamp]);
-    
-    })
+    // if(header == 'timestamp'){
 
-  }
-  
+    //   console.log('timestamp header should be intact: ', header);
 
-    // result.map(element => {
-  
-    //   console.log(element[timestamp]);
-    
-    // })
-  
+    // }
+    // else console.log('header, id`s of countries: ', header.substring(header.length - 4, header.length));
+  })
 
-  // console.log(result[0][timestamp]);
-  
-  // console.log(toMap[0]);
-  // console.log(a);
-   
+  let timestamp = headers[0];
+  // delete headers[0] = timestamp;
+  headers.splice(0,1);
+
+  console.log(headers);
+
+  // for(let i = 0; i<headers.length; i++){
+
   // }
+
+  // result.map(value => {
+  //   console.log(value[capacityHURS]);
+  // })
+  // result.map(value => {
+  //   // console.log('value for header: capacityHURS: ', value[capacityHURS]);
+  //   console.log('value for header: priceHURS: ', value[priceHURS]);
+
+  // })
+
+  // begin of working something; 
+  // for(let a=0;a<headers.length;a++){
+
+  //   let timestamp = headers[1];
+
+  //   result.map(element => {
+  
+
+  //     console.log(element[timestamp]);
+    
+  //   })
+
+  // }
+
+  // end of working something; 
+
   // toMap.map((element, counter) => {
 
   //   // console.log('Element: ');
