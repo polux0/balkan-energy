@@ -62,102 +62,48 @@ app.get('/', async (req, res) =>
   })
   // list all by headers;
 
-  headers.map((header, counter) => {
+  // headers.map((header, counter) => {
 
-    // if(header == 'timestamp'){
+  //   if(header == 'timestamp'){
 
-    //   console.log('timestamp header should be intact: ', header);
+  //     console.log('timestamp header should be intact: ', header);
 
-    // }
-    // else console.log('header, id`s of countries: ', header.substring(header.length - 4, header.length));
-  })
+  //   }
+  //   else console.log('header, id`s of countries: ', header.substring(header.length - 4, header.length));
+
+  // })
 
   let timestamp = headers[0];
+  headers.splice(0,1);
 
-  //try to sort an array; 
+  //this works somehow, so, please, figure it out for whole solution;
+  console.log('heades before everything: ', headers);
 
-  let testArray = ['capacity12', 'price21', 'price32', 'capacity21', 'capacity32', 'price12'];
-  //let testArray = ['price21', 'capacity12', 'price32', 'capacity21', 'capacity32', 'price12'];
+  headers.map((header, counter) => {
 
+    if(header.startsWith('capacity')){
 
-  console.log('test array before sorting: ');
-  console.log(testArray);
+      let countries = header.substring(header.length - 4, header.length);
 
-  for(let i=0; i< testArray.length; i++){
+      let derivedCountries = `price${countries}`;
 
-    if(testArray[i].startsWith('capacity'))
-    {
-      let swap;
-      let ids = testArray[i].substring(testArray[i].length - 2, testArray[i].length);
+      result.map(value => {
 
-        for(let j = i+1, k = i+1; k < testArray.length; k++)
-        {
-          console.log('for loop happend');            
+        let object = {
 
-          if(testArray[k].startsWith('price') && testArray[k].substring == ids){
+          timestamp: value[timestamp],
+          [header] : value[header],
+          [derivedCountries]: value[derivedCountries]
 
-            console.log('swapped');            
-
-            swap = testArray[j];
-            testArray[j] = testArray[k];
-            testArray[k] = swap;
-          }
         }
+
+          finalArray.push(object);
+      })
+
     }
-    // else if(testArray[i].startsWith('price'))
-    // {
-    //   let ids1 = testArray[i].substring(testArray[i].length - 2, testArray[i].length);
-    //   let anotherSwap;
+  })
+    res.status(200).send(finalArray);
 
-    //     for(let l = i+1, m = i+1; m<testArray.length; m++)
-    //     {
-    //       if(testArray[l].startsWith('capacity') && testArray[l].substring == ids1)
-    //       {
-    //        swap = testArray[l];
-    //        testArray[l] = testArray[m];
-    //        testArray[m] = swap;
-    //        console.log('swapped');
-    //       }
-    //     }
-      
-    // }
-  }
-
-  console.log('Array after sorting: ', testArray);
-
-  // for(let i = 0; i<headers.length; i++){
-
-  // }
-
-  // result.map(value => {
-  //   console.log(value[capacityHURS]);
-  // })
-  // result.map(value => {
-  //   // console.log('value for header: capacityHURS: ', value[capacityHURS]);
-  //   console.log('value for header: priceHURS: ', value[priceHURS]);
-
-  // })
-
-  // begin of working something; 
-  // for(let a=0;a<headers.length;a++){
-
-  //   let timestamp = headers[1];
-
-  //   result.map(element => {
-  
-
-  //     console.log(element[timestamp]);
-    
-  //   })
-
-  // }
-
-  // end of working something; 
-
-  // toMap.map((element, counter) => {
-
-  //   // console.log('Element: ');
-  //   console.log(element);
 
   //   //structure; 
   //   // result = await auctionDaily.create
@@ -190,12 +136,6 @@ app.get('/', async (req, res) =>
 
   // })
 
-  // console.log('Final array: \n');
-  // console.log(finalArray);
- 
-  res.status(200).send('eh');
-  
-  // this should be function in order to extract from excel, prepare results in array, and then post to `auction/daily/create`
 
 
   // sequelize
