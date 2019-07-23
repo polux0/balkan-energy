@@ -39,7 +39,7 @@ app.get('/', async (req, res) =>
   // this should be function to extract from excel, prepare results in array, and then post to `auction/daily/create`
   // uzeti auction manual kao referentnu tačku; ( testirati na `auction-daily-sample-to-become`);
 
-  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.xlsx";
+  var filename = "/src/utils/excel-parser-scripts/auctions-manual.xlsx";
 
   const XLXS = require('xlsx');
 
@@ -49,10 +49,10 @@ app.get('/', async (req, res) =>
   
 
   // {header: 1} -> returns header as first array, results as anothers; 
-  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]], {header: 1});
+  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]], {header: 1});
   //
 
-  let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
+  let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]]);
 
   let finalArray = [];
 
@@ -81,11 +81,11 @@ app.get('/', async (req, res) =>
 
   headers.map((header, counter) => {
 
-    if(header.startsWith('capacity')){
+    if(header.startsWith('Dcapacity')){
 
       let countries = header.substring(header.length - 4, header.length);
 
-      let derivedCountries = `price${countries}`;
+      let derivedCountries = `Dprice${countries}`;
 
       result.map(value => {
 
@@ -98,11 +98,16 @@ app.get('/', async (req, res) =>
         }
 
           finalArray.push(object);
+          // test with bigger sample; 
+          // get first country id & second country id, then store in database; 
+          // auctionDaily.bulkCreate(finalArray);
       })
 
     }
   })
-    res.status(200).send(finalArray);
+    console.log('final array');
+    console.log(finalArray);
+    res.status(200).send('eh');
 
 
   //   //structure; 
