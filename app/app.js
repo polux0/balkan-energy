@@ -107,7 +107,7 @@ app.get('/', async (req, res) =>
         {
           
           console.log('there is a problem with fetching id for country `from` and country `to` ', error);
-          res.status(200).json(error);
+          res.status(400).json(error);
         }
 
         let object = {
@@ -130,7 +130,7 @@ app.get('/', async (req, res) =>
         }
         catch (error) {
           console.log('Error occured while trying to insert `auction daily` data: ', error);
-          res.status(200).json(error);
+          res.status(400).json(error);
         }
         
       })
