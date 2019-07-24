@@ -50,11 +50,12 @@ app.get('/', async (req, res) =>
 
   // {header: 1} -> returns header as first array, results as anothers; 
   let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]], {header: 1});
-  //
 
   let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
 
   let finalArray = [];
+
+  let resultingInsert;
 
   let headers = toMap[0].map(header => {
 
@@ -75,39 +76,68 @@ app.get('/', async (req, res) =>
 
       let derivedCountries = `price${countries}`;
 
-      result.map(value => {
+      
+      result.map(async value => {
 
-        // let object = {
+        let firstCountryId, secondCountryId, resultingInsert;
 
-        //   timestamp: value[timestamp],
-        //   [header] : value[header],
-        //   [derivedCountries]: value[derivedCountries]
+        try 
+        {
 
-        // }
+           firstCountryId = await country.findOne(
+           {
+              where:
+              {
+                code:derivedCountries.substring(derivedCountries.length-4, derivedCountries.length-2)
+              }
 
-        //   firstCountryId: await country.findAll({where:{code = ...}})
+            });
+    
+            secondCountryId = await country.findOne(
+            {
+              where:
+              {
+                code: derivedCountries.substring(derivedCountries.length-2, derivedCountries.length)
+              }
+
+            });
+
+        }
+        catch (error)
+        {
+          
+          console.log('there is a problem with fetching id for country `from` and country `to` ', error);
+          res.status(200).json(error);
+        }
 
         let object = {
 
-             firstCountryId: derivedCountries.substring(derivedCountries.length-4, derivedCountries.length-2),
-             secondCountryId: derivedCountries.substring(derivedCountries.length-2, derivedCountries.length),
+             firstCountryId: firstCountryId.id,
+             secondCountryId: secondCountryId.id,
+             code: `${countries}`,
+             displayCode: `auction daily ${countries}`,
              timestamp: value[timestamp],
              capacity: value[header],
-             price: value[derivedCountries]
+             value: value[derivedCountries]
 
         }
 
-          finalArray.push(object);
-          // test with bigger sample; 
-          // get first country id & second country id, then store in database; 
-          // auctionDaily.bulkCreate(finalArray);
+        finalArray.push(object);
+
+        try
+        {
+          resultingInsert = await auctionDaily.bulkCreate(finalArray);
+        }
+        catch (error) {
+          console.log('Error occured while trying to insert `auction daily` data: ', error);
+          res.status(200).json(error);
+        }
+        
       })
 
     }
   })
-    console.log('final array');
-    // console.log(finalArray);
-    res.status(200).send(finalArray);
+    res.status(200).send('success');
 
 
   // sequelize
