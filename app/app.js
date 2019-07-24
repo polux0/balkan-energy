@@ -39,7 +39,7 @@ app.get('/', async (req, res) =>
   // this should be function to extract from excel, prepare results in array, and then post to `auction/daily/create`
   // uzeti auction manual kao referentnu tačku; ( testirati na `auction-daily-sample-to-become`);
 
-  var filename = "/src/utils/excel-parser-scripts/auctions-manual.xlsx";
+  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.xlsx";
 
   const XLXS = require('xlsx');
 
@@ -49,10 +49,10 @@ app.get('/', async (req, res) =>
   
 
   // {header: 1} -> returns header as first array, results as anothers; 
-  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]], {header: 1});
+  let toMap = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]], {header: 1});
   //
 
-  let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[2]]);
+  let result = XLXS.utils.sheet_to_json(workbook.Sheets[sheetNameList[0]]);
 
   let finalArray = [];
 
@@ -60,18 +60,6 @@ app.get('/', async (req, res) =>
 
     return header;
   })
-  // list all by headers;
-
-  // headers.map((header, counter) => {
-
-  //   if(header == 'timestamp'){
-
-  //     console.log('timestamp header should be intact: ', header);
-
-  //   }
-  //   else console.log('header, id`s of countries: ', header.substring(header.length - 4, header.length));
-
-  // })
 
   let timestamp = headers[0];
   headers.splice(0,1);
@@ -81,19 +69,31 @@ app.get('/', async (req, res) =>
 
   headers.map((header, counter) => {
 
-    if(header.startsWith('Dcapacity')){
+    if(header.startsWith('capacity')){
 
       let countries = header.substring(header.length - 4, header.length);
 
-      let derivedCountries = `Dprice${countries}`;
+      let derivedCountries = `price${countries}`;
 
       result.map(value => {
 
+        // let object = {
+
+        //   timestamp: value[timestamp],
+        //   [header] : value[header],
+        //   [derivedCountries]: value[derivedCountries]
+
+        // }
+
+        //   firstCountryId: await country.findAll({where:{code = ...}})
+
         let object = {
 
-          timestamp: value[timestamp],
-          [header] : value[header],
-          [derivedCountries]: value[derivedCountries]
+             firstCountryId: derivedCountries.substring(derivedCountries.length-4, derivedCountries.length-2),
+             secondCountryId: derivedCountries.substring(derivedCountries.length-2, derivedCountries.length),
+             timestamp: value[timestamp],
+             capacity: value[header],
+             price: value[derivedCountries]
 
         }
 
@@ -106,41 +106,8 @@ app.get('/', async (req, res) =>
     }
   })
     console.log('final array');
-    console.log(finalArray);
-    res.status(200).send('eh');
-
-
-  //   //structure; 
-  //   // result = await auctionDaily.create
-  //   //         (
-  //   //             {
-  //   //                 firstCountryId: req.body.firstCountryId,
-  //   //                 secondCountryId: req.body.secondCountryId,
-  //   //                 code: req.body.code,
-  //   //                 displayCode: req.body.displayCode,
-  //   //                 //fixed for now; 
-  //   //                 timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-  //   //                 //
-  //   //                 capacity: req.body.capacity,
-  //   //                 atc: req.body.atc,
-  //   //                 value: req.body.value,
-  //   //                 measure1: req.body.measure1,
-  //   //                 measure2: req.body.measure2
-  //   //             }
-  //   //         );
-
-  //   // if(counter > 1)
-  //   // {
-  //   //   finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
-  //   //   // return AuctionDaily.create({
-  //   //     // timestamp:...
-  //   //   // });
-  //   // }
-  //   // finalArray.push({timestamp: element.timestamp, capacity:element.capacityHURS, price:element.priceHURS}, {timestamp:element.timestamp, capacity:element.capacityRSHU , price:element.priceRSHU  });
-   
-
-  // })
-
+    // console.log(finalArray);
+    res.status(200).send(finalArray);
 
 
   // sequelize
