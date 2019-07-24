@@ -122,15 +122,18 @@ app.get('/', async (req, res) =>
 
         }
 
-        finalArray.push(object);
+          finalArray.push(object);
 
         try
         {
           resultingInsert = await auctionDaily.bulkCreate(finalArray);
         }
-        catch (error) {
+        catch (error)
+        {
+
           console.log('Error occured while trying to insert `auction daily` data: ', error);
           res.status(400).json(error);
+          
         }
         
       })
