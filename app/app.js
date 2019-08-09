@@ -39,7 +39,7 @@ app.get('/', async (req, res) =>
   // this should be function to extract from excel, prepare results in array, and then post to `auction/daily/create`
   // uzeti auction manual kao referentnu tačku; ( testirati na `auction-daily-sample-to-become`);
 
-  var filename = "/src/utils/excel-parser-scripts/auction-daily-sample-to-become.xlsx";
+  var filename = "/src/utils/excel-parser-scripts/auctions/auctions-auto.xlsx";
 
   const XLXS = require('xlsx');
 
@@ -127,6 +127,8 @@ app.get('/', async (req, res) =>
         try
         {
           resultingInsert = await auctionDaily.bulkCreate(finalArray);
+          console.log('finished')
+
         }
         catch (error)
         {
