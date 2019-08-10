@@ -55,31 +55,30 @@ app.get('/', async (req, res) =>
 
   let finalArray = [];
 
-  let resultingInsert;
-
   let headers = toMap[0].map(header => {
 
     return header;
   })
 
+  console.log(headers.length)
   let timestamp = headers[0];
   headers.splice(0,1);
 
   //this works somehow, so, please, figure it out for whole solution;
   console.log('heades before everything: ', headers);
 
-  headers.map((header, counter) => {
+  let derivedCountries = null
+  let firstCountryId, secondCountryId, resultingInsert;
 
-    if(header.startsWith('capacity')){
+//1. Excel ima manje kolona od te tabele u bazi - ucita to sto ima, ostale kolone u bazi ne dira
+//2. Excel ima neku kolonu, tj novi header - napravi taj header ako nema, pa ucitaj
+  headers.map(async header => {
+
+  if(header.startsWith('capacity')){
 
       let countries = header.substring(header.length - 4, header.length);
 
       let derivedCountries = `price${countries}`;
-
-      
-      result.map(async value => {
-
-        let firstCountryId, secondCountryId, resultingInsert;
 
         try 
         {
@@ -109,6 +108,9 @@ app.get('/', async (req, res) =>
           console.log('there is a problem with fetching id for country `from` and country `to` ', error);
           res.status(400).json(error);
         }
+
+      
+      result.map(async value => {
 
         let object = {
 
@@ -141,8 +143,9 @@ app.get('/', async (req, res) =>
       })
 
     }
+    
   })
-    res.status(200).send('success');
+    res.status(200).send('hm');
 
 
   // sequelize
