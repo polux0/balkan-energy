@@ -1,6 +1,6 @@
 'use strict';
 
-const auctionDailyController = require('../../../controllers/').auctionDailyController;
+const controllers = require('../../../controllers/');
 
 module.exports = (app) => {
 
@@ -8,6 +8,7 @@ module.exports = (app) => {
     message: 'Auction daily route!',
   }));
 
-  app.post('/api/auction/daily/create', auctionDailyController.create);
-  app.get('/api/auction/daily/', auctionDailyController.list);
+  app.post('/api/auction/daily/create', controllers.auctionDailyController.create);
+  app.get('/api/auction/daily/', controllers.auctionDailyController.list);
+  app.get('/api/loadrealized', controllers.loadRealizedController.list)
 };
