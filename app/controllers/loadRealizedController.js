@@ -11,7 +11,7 @@ module.exports =
         
         try
         {
-            result = await loadrealized.findAll();
+            result = await loadrealized.findAll({where:{countryId:36}});
             
         }
         catch (error)

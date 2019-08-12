@@ -31,6 +31,7 @@ app.get('/', async (req, res) =>
   const sheetNameList = workbook.SheetNames;
 
   let resultingInsert = null;
+
   let countryId = null;
   
 
@@ -41,6 +42,8 @@ app.get('/', async (req, res) =>
 
   let finalArray = [];
 
+  let final;
+
   let headers = toMap[0].map(header => {
 
     // console.log('header: ', header)
@@ -49,31 +52,20 @@ app.get('/', async (req, res) =>
   let timestamp = headers[0]
   headers.splice(0,1)
  
- headers.map(header => {
-    countryId = country.findOne(
-      {
-         where:
-         {
-           code: header
-         }
-
-       });
-       result.map(result => {
-      finalArray.push({timestamp: result[timestamp] , countryId: countryId.id, value: result[header], automaticallyUpdated:0, createdAt: Date.now(), updatedAt: Date.now() })
-     })
-  })
-
+  for(let i = 0; i<headers.length; i++){
+    countryId = await country.findOne({where:{code:headers[i]}})
+    for(let j = 0; j < result.length; j++){
+      finalArray.push({timestamp: result[i][timestamp] , countryId: countryId.id, value: result[i][headers[i]], automaticallyUpdated:0, createdAt: Date.now(), updatedAt: Date.now() })
+    }
+  }
   try
   {
     //84241
-    let maldokuce = finalArray.splice(0, 10000)
-    let maldokuce1 = finalArray.splice(0, 10000)
-    let maldokuce2 = finalArray.splice(0, 10000)
-    let maldokuce3 = finalArray.splice(0, 10000)
-
-    await loadrealized.bulkCreate(maldokuce)
-    console.log('\n\n\n\n\n\n\n\n\ finished')
-    res.status(200).json('hehe');
+    const firstBulk = finalArray.splice(0, finalArray.length/2)
+    const secondBulk = finalArray.splice(0, finalArray.length)
+    let test = await loadrealized.bulkCreate(firstBulk)
+    let anothertest = await loadrealized.bulkCreate(secondBulk)
+    res.status(200).json('success');
 
   }
   catch (error)
