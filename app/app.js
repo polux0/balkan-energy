@@ -1,3 +1,17 @@
+//to-do: 
+
+//1. RS1 header -> ne bi trebalo da bude vezano za country tabel-u, tj. ako ne postoji id sa tim header-om u bazi! ( razmisliti )
+//2. napraviti spot-turnover po naliku na spot
+
+//imports to do:
+// 1. spot
+// 2. spot-turnover
+// 3. temperature
+// 4. consumption
+// 5. production
+// 6. 
+
+
 'use strict';
 
 const express = require('express')
