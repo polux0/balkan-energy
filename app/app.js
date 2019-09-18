@@ -2,15 +2,19 @@
 
 //1. RS1 header -> ne bi trebalo da bude vezano za country tabel-u, tj. ako ne postoji id sa tim header-om u bazi! ( razmisliti )
 //2. napraviti spot-turnover po naliku na spot
+//3. napraviti tabelu koja sadrzi sve tipove i njihove subtype-ove ()
 
 //imports to do:
-// 1. spot
-// 2. spot-turnover
-// 3. temperature
-// 4. consumption
-// 5. production
-// 6. 
 
+//
+// 1. spot
+// 2. spot-turnover ( same as 1.)
+// 3. temperature ( same as 1.)
+// 4. consumption 
+// 5. production ( same as 4.)
+// 6. !!! futures !!!
+// 7. production per block? ( new one ) -> default value 0, not NULL; * 
+// 8. maintances ( new one ) ovo bi trebalo da bude vezano za production per block;
 
 'use strict';
 
