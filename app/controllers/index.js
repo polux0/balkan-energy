@@ -1,10 +1,10 @@
-const auctionDailyController = require('./auctionDailyController');
+const auctionController = require('./auctionController');
 const loadRealizedController = require('./loadRealizedController');
 const loadForecastController = require('./loadForecastController')
 
 module.exports = {
 
-    auctionDailyController,
+    auctionController,
     loadRealizedController,
     loadForecastController
 

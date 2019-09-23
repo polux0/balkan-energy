@@ -1,5 +1,7 @@
 //1. Excel ima manje kolona od te tabele u bazi - ucita to sto ima, ostale kolone u bazi ne dira
 //2. Excel ima neku kolonu, tj novi header - napravi taj header ako nema, pa ucitaj
+const {commercialflows} = require('./models')
+
 var filename = "/src/utils/excel-parser-scripts/auctions/auctions-auto.xlsx";
 
 const XLXS = require('xlsx');

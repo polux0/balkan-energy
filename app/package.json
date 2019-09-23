@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/polux0/balkan-energy#readme",
   "dependencies": {
+    "basic-ftp": "^4.0.1",
     "body-parser": "^1.19.0",
     "eslint": "^6.0.1",
     "express": "^4.17.1",

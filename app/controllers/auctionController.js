@@ -1,4 +1,4 @@
-const {auctionDaily} = require('../models/');
+const {auctionDaily} = require('../models');
 
 const moment = require('moment');
 
