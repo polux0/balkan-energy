@@ -1,9 +1,8 @@
 'use strict'
 
 const ftp = require('basic-ftp')
-const fs = require('fs')
 
-async function example(){
+async function fetch(){
 
     const client = new ftp.Client()
     client.ftp.verbose = true
@@ -14,22 +13,15 @@ async function example(){
             password: 'markomarko323',
             secure: false
         })
-        await client.cd('/test.balkanenergy.in.rs/auctions/')
+        await client.cd('/test.balkanenergy.in.rs/dataupload/')
         await client.list()
-        let files = await client.downloadDir('utils/excel-parser-scripts/auctions/test')
+        //let files = await client.downloadDir('utils/excel-parser-scripts/auctions/test')
+        const file = await client.download('utils/excel-parser-scripts/auctions/test', 'auctions-auto.xls')
 
     } catch (error) {
         console.log('error happend: ', error)
         client.close()
-
-        // return client; 
     }
 }
 
-module.exports = {example}
-//ftp credentials;
-// Host/Ftp: ftp.balkanenergy.in.rs
-// Username: marko@balkanenergy.in.rs
-// Password: markomarko323
-// Lokacija: test.balkanenergy.in.rs/dataupload/auctions-auto.xlsx
-
+module.exports = {fetch}
