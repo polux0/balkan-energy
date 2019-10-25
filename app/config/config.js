@@ -3,6 +3,8 @@ const fs = require('fs');
 
 // Use a different table name - @migrationStorageTableName. Default: `SequelizeMeta`
 // to create migration user 3306 port, to execute it change to 33061
+// to execute migration directly to production 116.203.220.213
+
 module.exports = {
   development: {
     username: 'root',
