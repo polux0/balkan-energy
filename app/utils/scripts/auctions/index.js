@@ -25,7 +25,6 @@ let headers = toMap[0].map(header => {
 let timestamp = headers[0];
 headers.splice(0,1);
 
-//this works somehow, so, please, figure it out for whole solution;
 console.log('heades before everything: ', headers);
 
 headers.map((header, counter) => {
@@ -65,9 +64,7 @@ headers.map((header, counter) => {
         }
         catch (error)
         {
-          
           console.log('there is a problem with fetching id for country `from` and country `to` ', error);
-          res.status(400).json(error);
         }
 
         let object = {
@@ -87,15 +84,12 @@ headers.map((header, counter) => {
         try
         {
           resultingInsert = await auctionDaily.bulkCreate(finalArray);
-          //console.log('finished' + resultingInsert)
 
         }
         catch (error)
         {
 
-          console.log('Error occured while trying to insert `auction daily` data: ', error);
-          res.status(400).json(error);
-          
+          console.log('Error occured while trying to insert `auction daily` data: ', error);          
         }
         
       })

@@ -2,7 +2,7 @@
 
 const ftp = require('basic-ftp')
 
-async function fetch(){
+async function fetch(location){
 
     const client = new ftp.Client()
     client.ftp.verbose = true
@@ -13,10 +13,9 @@ async function fetch(){
             password: 'markomarko323',
             secure: false
         })
-        await client.cd('/test.balkanenergy.in.rs/dataupload/')
+        await client.cd(`/test.balkanenergy.in.rs/dataupload/${location}`)
         await client.list()
-        //let files = await client.downloadDir('utils/excel-parser-scripts/auctions/test')
-        const file = await client.download('utils/excel-parser-scripts/auctions/test', 'auctions-auto.xls')
+        await client.downloadDir(`utils/scripts/${location}`)
 
     } catch (error) {
         console.log('error happend: ', error)
