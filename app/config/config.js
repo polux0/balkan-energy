@@ -11,7 +11,7 @@ module.exports = {
     password: 'Up6KjbnEV4Hgfo75YM393QdQsK3Z0aTNBz0DoirrW+c',
     database: 'energy',
     host: process.env.MYSQL_HOST,
-    port: '33061',
+    port: '3306',
     dialect: 'mysql',
     migrationStorageTableName: 'migrations',
     pool: 

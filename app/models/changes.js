@@ -4,13 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     file_type: DataTypes.STRING,
     filename: DataTypes.STRING,
     file_size: DataTypes.STRING,
-    file_compared_to: DataTypes.INTEGER,
+    file_compared_to: DataTypes.STRING,
     file_imported: DataTypes.STRING
-  }, {freezeTableName: true});
+  }, {});
   changes.associate = function(models) {
-    changes.hasOne(models.changes, {
-      foreignKey: 'changesId'
-    });
+    // associations can be defined here
   };
   return changes;
 };
