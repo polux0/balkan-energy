@@ -14,13 +14,22 @@ async function fetch(location){
             secure: false
         })
         await client.cd(`/test.balkanenergy.in.rs/dataupload/${location}`)
-        await client.list()
+        const size = await client.size('auctions-auto-test.xls')
         await client.downloadDir(`utils/scripts/${location}`)
+        const result = {
+
+            file_type: 'auctions',
+            filename: 'auction-auto-test',
+            file_size: size,
+            file_compared_to: 'imagine',
+            file_imported: null
+
+        }
+        return result
 
     } catch (error) {
-        console.log('error happend: ', error)
         client.close()
+        throw new Error(error)
     }
 }
-
 module.exports = {fetch}

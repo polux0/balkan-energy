@@ -43,8 +43,8 @@ require('./routes/api/v1/')(app);
 app.get('/', async (req, res) =>
 {
 
-    await ftpTest.fetch()
-    await auctionTest.importMe();
+    await ftpTest.fetch('auction-modified-test')
+    //await auctionTest.importMe();
     res.status(200).json('/ route request successfull');
     
 });

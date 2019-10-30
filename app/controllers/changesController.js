@@ -12,21 +12,17 @@ module.exports =
 
         try
         {
-            result = await auctionDaily.create
+            result = await changes.create
             (
                 {
-                    firstCountryId: req.body.firstCountryId,
-                    secondCountryId: req.body.secondCountryId,
-                    code: req.body.code,
-                    displayCode: req.body.displayCode,
-                    //fixed for now; 
-                    timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
-                    //
-                    capacity: req.body.capacity,
-                    atc: req.body.atc,
-                    value: req.body.value,
-                    measure1: req.body.measure1,
-                    measure2: req.body.measure2
+                    file_type: req.body.file_type,
+                    filename: req.body.filename,
+                    file_size: req.body.file_size,
+                    file_compared_to: req.body.file_compared_to,
+                    file_imported: req.body.file_imported,
+                    created_at: moment().utc().valueOf().format("YYYY-MM-DD HH:mm:ss"),
+                    updated_at: moment().utc().valueOf().format("YYYY-MM-DD HH:mm:ss"),
+
                 }
             );
 
