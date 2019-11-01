@@ -20,6 +20,9 @@ module.exports = {
       file_compared_to: {
         type: Sequelize.STRING
       },
+      file_should_be_imported: {
+        type: Sequelize.STRING
+      },
       file_imported: {
         type: Sequelize.STRING
       },
