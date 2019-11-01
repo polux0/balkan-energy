@@ -1,6 +1,6 @@
 'use strict;'
 
-const {auctionDaily} = require('../models');
+const {auctionDaily, changes} = require('../models');
 const ftp = require('../utils/ftp');
 const auctionTest = require('../utils/scripts/auctions/');
 
@@ -69,22 +69,30 @@ module.exports =
     async import(req, res)
     {
         let result = null
+        let final = null
 
         try
         {
             result = await ftp.fetch('auction-modified-test')
+            result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            if(result.file_should_be_imported == 'yes'){
+                await auctionTest.importMe()
+                result.file_imported = 'yes';
+                final = await changes.create(result)
+                return res.status(200).json(final);
+            }
+            else return res.status(200).json('Everything is up to date!')
             
         }
         catch (error)
         {
-            console.log(error);
+            result.file_imported = 'no';
+            final = await changes.create(result)
             return res.status(400).json(''+error);
 
         }
         
-        console.log('at least result happend')
-        console.log(result);
-        return res.status(200).json(result);
 
     }
 

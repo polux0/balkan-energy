@@ -65,6 +65,7 @@ headers.map((header, counter) => {
         catch (error)
         {
           console.log('there is a problem with fetching id for country `from` and country `to` ', error);
+          throw new Error('there is a problem with fetching id for country `from` and country `to` ', error)
         }
 
         let object = {
@@ -88,8 +89,8 @@ headers.map((header, counter) => {
         }
         catch (error)
         {
-
-          console.log('Error occured while trying to insert `auction daily` data: ', error);          
+          console.log('Error occured while trying to insert `auction daily` data: ', error);
+          throw new Error('Error occured while trying to insert `auction daily` data: ', error)          
         }
         
       })

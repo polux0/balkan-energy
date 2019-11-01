@@ -1,10 +1,11 @@
 'use strict'
 
 const ftp = require('basic-ftp')
-const changes = require('../models/changes')
+const {changes} = require('../models/')
 
 async function fetch(location){
 
+    let result = null;
     const client = new ftp.Client()
     client.ftp.verbose = true
     try {
@@ -16,21 +17,55 @@ async function fetch(location){
         })
         await client.cd(`/test.balkanenergy.in.rs/dataupload/${location}`)
         const size = await client.size('auctions-auto-test.xls')
-        //if size === changes.getLatest('auction){
-          //we should import? 
-          //
-        //}
-        await client.downloadDir(`utils/scripts/${location}`)
-        const result = {
+        const previous = await changes.findOne({where: {file_type: `${location}`}, order: [['createdAt', 'DESC']]}) 
+        
+        console.log('previous: ', previous)
 
-            file_type: `${location}`,
-            filename: 'auction-auto-test',
-            file_size: size,
-            file_compared_to: 'imagine',
-            file_should_be_imported: null,
-            file_imported: null
+        if(!previous){
+            
+            console.log('There are changes, import should be done')
+            result = {
+
+                file_type: `${location}`,
+                filename: 'auction-auto-test',
+                file_size: size,
+                file_compared_to: previous == null? null : previous.id,
+                file_should_be_imported: 'yes',
+                file_imported: null
+    
+            }
+        }
+        else if(size === parseInt(previous.file_size)){
+            
+            console.log('Files are the same, there is no need for an import')
+
+            result = {
+
+                file_type: `${location}`,
+                filename: 'auction-auto-test',
+                file_size: size,
+                file_compared_to: previous == null? null : previous.id,
+                file_should_be_imported: 'no',
+                file_imported: null
+    
+            }
+        }
+        else {
+            console.log('There are changes, import should be done')
+            result = {
+
+                file_type: `${location}`,
+                filename: 'auction-auto-test',
+                file_size: size,
+                file_compared_to: previous.id == null? null : previous.id,
+                file_should_be_imported: 'yes',
+                file_imported: null
+    
+            }
 
         }
+
+        await client.downloadDir(`utils/scripts/${location}`)
         return result
 
     } catch (error) {
