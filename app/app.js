@@ -51,7 +51,7 @@ app.get('/', async (req, res) =>
 
 app.get('/ftp', async (req, res) => {
 
-  await ftpTest.fetch('auction-modified-test')
+  await ftpTest.fetch('auction-update-test')
   res.status(200).json('ftp-end-point is all right');
 })
 

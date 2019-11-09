@@ -3,7 +3,7 @@
 const ftp = require('basic-ftp')
 const {changes} = require('../models/')
 
-async function fetch(location){
+async function fetch(location, filename){
 
     let result = null;
     const client = new ftp.Client()
@@ -16,7 +16,7 @@ async function fetch(location){
             secure: false
         })
         await client.cd(`/test.balkanenergy.in.rs/dataupload/${location}`)
-        const size = await client.size('auctions-auto-test.xls')
+        const size = await client.size(`${filename}.xls`)
         const previous = await changes.findOne({where: {file_type: `${location}`}, order: [['createdAt', 'DESC']]}) 
         
         console.log('previous: ', previous)
@@ -27,7 +27,7 @@ async function fetch(location){
             result = {
 
                 file_type: `${location}`,
-                filename: 'auction-auto-test',
+                filename: `${filename}.xls`,
                 file_size: size,
                 file_compared_to: previous == null? null : previous.id,
                 file_should_be_imported: 'yes',
@@ -42,7 +42,7 @@ async function fetch(location){
             result = {
 
                 file_type: `${location}`,
-                filename: 'auction-auto-test',
+                filename: `${filename}.xls`,
                 file_size: size,
                 file_compared_to: previous == null? null : previous.id,
                 file_should_be_imported: 'no',
@@ -55,7 +55,7 @@ async function fetch(location){
             result = {
 
                 file_type: `${location}`,
-                filename: 'auction-auto-test',
+                filename: `${filename}.xls`,
                 file_size: size,
                 file_compared_to: previous.id == null? null : previous.id,
                 file_should_be_imported: 'yes',
