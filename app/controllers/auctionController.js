@@ -73,7 +73,7 @@ module.exports =
 
         try
         {
-            result = await ftp.fetch('auction-modified-test')
+            result = await ftp.fetch('auction-update-test', 'auctions-auto')
             result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
             result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
             if(result.file_should_be_imported == 'yes'){
@@ -82,7 +82,10 @@ module.exports =
                 final = await changes.create(result)
                 return res.status(200).json(final);
             }
-            else return res.status(200).json('Everything is up to date!')
+            else {
+                await changes.create(result)
+                return res.status(200).json('Everything is up to date!')
+            }
             
         }
         catch (error)

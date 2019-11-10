@@ -43,15 +43,15 @@ require('./routes/api/v1/')(app);
 app.get('/', async (req, res) =>
 {
 
-    await ftpTest.fetch('auction-modified-test')
-    //await auctionTest.importMe();
+    await ftpTest.fetch('auction-update-test', 'auctions-auto')
+    await auctionTest.importMe();
     res.status(200).json('/ route request successfull');
     
 });
 
 app.get('/ftp', async (req, res) => {
 
-  await ftpTest.fetch('auction-update-test')
+  await ftpTest.fetch('auction-update-test', 'auctions-auto')
   res.status(200).json('ftp-end-point is all right');
 })
 
