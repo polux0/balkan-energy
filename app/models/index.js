@@ -32,8 +32,8 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-// db.sequelize = sequelize;
-// db.Sequelize = Sequelize;
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 db.country = require('./country')(sequelize, Sequelize);
 // db.consumption = require('./consumption')(sequelize, Sequelize);

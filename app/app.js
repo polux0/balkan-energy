@@ -34,6 +34,7 @@ const {auctionDaily} = require('./models')
 //ftp test; 
 
 const ftpTest = require('./utils/ftp');
+const anotherFtp = require('./utils/anotherFtp');
 
 const auctionTest = require('./utils/scripts/auctions')
 
@@ -51,8 +52,13 @@ app.get('/', async (req, res) =>
 
 app.get('/ftp', async (req, res) => {
 
-  await ftpTest.fetch('auction-update-test', 'auctions-auto')
+  await anotherFtp.fetch('auction-update-test', 'auctions-auto')
   res.status(200).json('ftp-end-point is all right');
+})
+app.get('/test', async (req, res) => {
+  let foundOne = await auctionDaily.findOne({where:{timestamp: '2019-07-01 00:00:00'}})
+  console.log('timestamp of foundOne: ', foundOne.timestamp)
+  res.status(200).json(foundOne)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 

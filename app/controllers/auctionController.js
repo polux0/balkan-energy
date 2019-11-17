@@ -89,9 +89,14 @@ module.exports =
             
         }
         catch (error)
-        {
-            result.file_imported = 'no';
+        {   
+            //catch doesn't see this;
+            result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            result.file_should_be_imported = 'yes'
+            result.file_imported = 'no'
             final = await changes.create(result)
+            console.log('Something is wrong, obviously: ', error)
             return res.status(400).json(''+error);
 
         }
