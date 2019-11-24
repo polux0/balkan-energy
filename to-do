@@ -16,3 +16,8 @@ progress:
 1. /
 2. /
 
+
+another: 
+
+1. auctions-auto represents daily auctions; copy-paste same logic ( including migration for model, controller, utils ) for
+auction-monthly and auction-yearly;
