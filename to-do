@@ -19,5 +19,8 @@ progress:
 
 another: 
 
+0. insert countries from email to the database, and change logic according to it - countries should be 1st 3 letters, not 2 ( as it is now ); 
+0.1. modify insertion scripts for auctions - > should insert null if value is !number;
 1. auctions-auto represents daily auctions; copy-paste same logic ( including migration for model, controller, utils ) for
 auction-monthly and auction-yearly;
+2. change name of /util/scripts/auctions-auto to auction-daily-downloaded; same for the others;

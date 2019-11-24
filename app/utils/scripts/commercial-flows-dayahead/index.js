@@ -31,7 +31,6 @@ async function compare(object1){
       else if(object1.capacity !== objectComparedTo[0].dataValues.capacity || object1.value !== objectComparedTo[0].dataValues.value){
         return commercialflowsdayahead.update({capacity: object1.capacity, value: object1.value}, {where:{id:objectComparedTo[0].dataValues.id}})
       }
-
   
 }
 
@@ -56,11 +55,12 @@ try {
 
     firstCountryId = await country.findOne({where:{code:headers[i].substring(0, 2)}})
     secondCountryId = await country.findOne({where:{code:headers[i].substring(2, 4)}})
-    console.log('first country id ( from database ): ', firstCountryId)
-    console.log('second country id ( from database ): ', secondCountryId)
+    //console.log('first country id ( from database ): ', firstCountryId)
+    //console.log('second country id ( from database ): ', secondCountryId)
     for(let j = 0; j < result.length; j++){
 
         let object = {
+
             firstCountryId: firstCountryId.id,
             secondCountryId: secondCountryId.id,
             code: headers[i].substring(0, 2) + headers[i].substring(2, 4),
@@ -68,11 +68,9 @@ try {
             timestamp: result[i][timestamp],
             value: isNaN(result[i][headers[i]])? null: result[i][headers[i]] 
         }
+    console.log('object by object: ' + object.attr);
 
     finalArray.push(compare(object))
-        // upcoming comment went as first argument into `finalArray.push()`;
-        // {firstCountryId: firstCountryId.id === null? 71: firstCountryId.id, secondCountryId: secondCountryId.id === null? 71: secondCountryId.id, code: headers[i].substring(0, 2) + headers[i].substring(2, 4), displayCode: firstCountryId.displayCode + '-' + secondCountryId.displayCode, timestamp: result[i][timestamp], value: result[i][headers[i]], automaticallyUpdated:0, createdAt: Date.now(), updatedAt: Date.now() }
-    
     }
     
 } 
@@ -83,7 +81,7 @@ catch (error) {
 try
 {
 
-let test = await commercialflowsdayahead.bulkCreate(finalArray);
+//let test = await commercialflowsdayahead.bulkCreate(finalArray);
 
 }
 catch(error){
