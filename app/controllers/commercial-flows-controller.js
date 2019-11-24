@@ -11,7 +11,7 @@ module.exports =
         
         try
         {
-            result = await loadrealized.commercialflows({where:{countryId:36}});
+            result = await commercialflows.commercialflows({where:{countryId:36}});
             
         }
         catch (error)
