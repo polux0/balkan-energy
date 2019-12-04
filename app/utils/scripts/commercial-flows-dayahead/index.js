@@ -1,5 +1,5 @@
 'use strict';
-var filename = "/src/utils/scripts/commercial-dayahead/commercial-dayahead.xls";
+var filename = "/src/utils/scripts/commercial-dayahead-update-test/commercial-dayahead.xls";
 
 const XLXS = require('xlsx');
 
@@ -68,9 +68,9 @@ try {
             timestamp: result[i][timestamp],
             value: isNaN(result[i][headers[i]])? null: result[i][headers[i]] 
         }
-    console.log('object by object: ' + object.attr);
 
     finalArray.push(compare(object))
+
     }
     
 } 
@@ -81,7 +81,7 @@ catch (error) {
 try
 {
 
-//let test = await commercialflowsdayahead.bulkCreate(finalArray);
+let test = await commercialflowsdayahead.bulkCreate(finalArray);
 
 }
 catch(error){

@@ -34,7 +34,7 @@ const {auctionDaily} = require('./models')
 //ftp test; 
 
 const ftpTest = require('./utils/ftp');
-const anotherFtp = require('./utils/anotherFtp');
+const anotherFtp = require('./utils/testFtp');
 
 const auctionTest = require('./utils/scripts/auctions')
 

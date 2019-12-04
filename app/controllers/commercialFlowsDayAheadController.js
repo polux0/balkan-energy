@@ -36,7 +36,7 @@ module.exports =
 
         try
         {
-            result = await ftp.fetch('commercial-dayahead', 'commercial-dayahead')
+            result = await ftp.fetch('commercial-dayahead-update-test', 'commercial-dayahead')
             result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
             result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
             if(result.file_should_be_imported == 'yes'){
