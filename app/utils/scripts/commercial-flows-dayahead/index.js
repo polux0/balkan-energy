@@ -21,6 +21,8 @@ async function compare(object1){
         mapToModel:true
       });
 
+      console.log('need to test object: ' + Object.keys(objectComparedTo));
+
       if(Object.keys(objectComparedTo).length === 0){
         console.log('ostvario se uslov :)')
         return commercialflowsdayahead.create(object1)
@@ -65,8 +67,11 @@ try {
             timestamp: result[j][timestamp],
             value: isNaN(result[j][headers[i]])? null: result[j][headers[i]] 
         }
-
-    finalArray.push(compare(object))
+    
+          console.log('I want to see that empty object: \n', object)
+          finalArray.push(compare(object))
+        
+    
 
     }
     
