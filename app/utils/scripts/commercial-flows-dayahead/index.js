@@ -65,8 +65,8 @@ try {
             secondCountryId: secondCountryId.id,
             code: headers[i].substring(0, 2) + headers[i].substring(2, 4),
             displayCode: firstCountryId.displayCode + '-' + secondCountryId.displayCode,
-            timestamp: result[i][timestamp],
-            value: isNaN(result[i][headers[i]])? null: result[i][headers[i]] 
+            timestamp: result[j][timestamp],
+            value: isNaN(result[j][headers[i]])? null: result[j][headers[i]] 
         }
 
     finalArray.push(compare(object))
