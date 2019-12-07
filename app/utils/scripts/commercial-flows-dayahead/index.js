@@ -1,19 +1,16 @@
 'use strict';
+
 var filename = "/src/utils/scripts/commercial-dayahead-update-test/commercial-dayahead.xls";
-
 const XLXS = require('xlsx');
-
 const workbook = XLXS.readFile(filename);
-
 const sheetNameList = workbook.SheetNames;
-
 let firstCountryId = null;
 let secondCountryId = null;
-
 const {commercialflowsdayahead} = require('../../../models')
 const {country} = require('../../../models') 
 const db = require('../../../models/index')
 
+// update should be fixed - it doesn't work;
 async function compare(object1){
 
   let objectComparedTo = null;
@@ -28,8 +25,8 @@ async function compare(object1){
         console.log('ostvario se uslov :)')
         return commercialflowsdayahead.create(object1)
       }      
-      else if(object1.capacity !== objectComparedTo[0].dataValues.capacity || object1.value !== objectComparedTo[0].dataValues.value){
-        return commercialflowsdayahead.update({capacity: object1.capacity, value: object1.value}, {where:{id:objectComparedTo[0].dataValues.id}})
+      else if(object1.value !== objectComparedTo[0].dataValues.value){
+        return commercialflowsdayahead.update({value: object1.value}, {where:{id:objectComparedTo[0].dataValues.id}})
       }
   
 }

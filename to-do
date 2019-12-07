@@ -24,3 +24,5 @@ another:
 1. auctions-auto represents daily auctions; copy-paste same logic ( including migration for model, controller, utils ) for
 auction-monthly and auction-yearly;
 2. change name of /util/scripts/auctions-auto to auction-daily-downloaded; same for the others;
+3. commercial-dayahead: test does update work; if does copy (model, controller, utils) for commercial!dayahead;
+4. don't forget to `ORDER BY timestamp` whenever someone requests data; ( async insertion, so it could be '2' before '1' and that's not what we need;)
