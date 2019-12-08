@@ -2,7 +2,7 @@
 
 const {auctionYearly, changes} = require('../models');
 const ftp = require('../utils/ftp');
-const auctionYearlyImport = require('../utils/scripts/source/auctions-monthly');
+const auctionYearlyImport = require('../utils/scripts/source/auctions-yearly');
 
 const moment = require('moment');
 
@@ -73,11 +73,11 @@ module.exports =
 
         try
         {
-            result = await ftp.fetch('auctions-monthly', 'auctions-manual', 1)
+            result = await ftp.fetch('auctions-annual', 'auctions-manual', 1)
             result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
             result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
             if(result.file_should_be_imported == 'yes'){
-                await auctionMonthlyImport.importMe()
+                await auctionYearlyImport.importMe()
                 result.file_imported = 'yes';
                 final = await changes.create(result)
                 return res.status(200).json(final);
