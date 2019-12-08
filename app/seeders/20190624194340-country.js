@@ -4,11 +4,504 @@ module.exports = {
 
   up: (queryInterface, Sequelize) => {
     
-      return queryInterface.bulkInsert('country', [{
+      return queryInterface.bulkInsert('country', [
+      {
+        code: 'AL',
+        displayCode: 'Albania',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'AL0',
+        displayCode: 'Albania',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'AT',
+        displayCode: 'Austria',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'AT0',
+        displayCode: 'Austria',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BA',
+        displayCode: 'Bosnia and Herzegovina',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BA0',
+        displayCode: 'Bosnia and Herzegovina',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BG',
+        displayCode: 'Bulgaria',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BG0',
+        displayCode: 'Bulgaria',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'HR',
+        displayCode: 'Croatia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'HR0',
+        displayCode: 'Croatia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'CZ',
+        displayCode: 'Czech Republic',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'CZ0',
+        displayCode: 'Czech Republic',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'MK',
+        displayCode: 'N. Macedonia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'MK0',
+        displayCode: 'N. Macedonia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'DE',
+        displayCode: 'Germany',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'DE0',
+        displayCode: 'Germany',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'GR',
+        displayCode: 'Greece',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'GR0',
+        displayCode: 'Greece',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'HU',
+        displayCode: 'Hungary',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'HU0',
+        displayCode: 'Hungary',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'ME',
+        displayCode: 'Montenegro',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'ME0',
+        displayCode: 'Montenegro',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'RO',
+        displayCode: 'Romania',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'RO0',
+        displayCode: 'Romania',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'RS',
+        displayCode: 'Serbia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
         code: 'RS0',
         displayCode: 'Serbia',
-        measure: 'nothing', 
-        verbose: ''
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'SK',
+        displayCode: 'Slovakia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'SK0',
+        displayCode: 'Slovakia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'SI',
+        displayCode: 'Slovenia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'SI0',
+        displayCode: 'Slovenia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'TR',
+        displayCode: 'Turkey',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'TR0',
+        displayCode: 'Turkey',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'IT',
+        displayCode: 'Italy',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'IT0',
+        displayCode: 'Italy',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'CH',
+        displayCode: 'Switzerland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'CH0',
+        displayCode: 'Switzerland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BY',
+        displayCode: 'Belarus',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BY0',
+        displayCode: 'Belarus',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BE',
+        displayCode: 'Belgium',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'BE0',
+        displayCode: 'Belgium',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'CY',
+        displayCode: 'Cyprus',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'CY0',
+        displayCode: 'Cyprus',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'DK',
+        displayCode: 'Denmark',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'DK0',
+        displayCode: 'Denmark',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'EE',
+        displayCode: 'Estonia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'EE0',
+        displayCode: 'Estonia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'FI',
+        displayCode: 'Finland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'FI0',
+        displayCode: 'Finland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'FR',
+        displayCode: 'France',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'FR0',
+        displayCode: 'France',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'IE',
+        displayCode: 'Ireland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'IE0',
+        displayCode: 'Ireland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'LV',
+        displayCode: 'Latvia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'LV0',
+        displayCode: 'Latvia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'LT',
+        displayCode: 'Lithuania',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'LT0',
+        displayCode: 'Lithuania',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'LU',
+        displayCode: 'Luxembourg',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'LU0',
+        displayCode: 'Luxembourg',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'MT',
+        displayCode: 'Malta',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'MT0',
+        displayCode: 'Malta',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'RS0',
+        displayCode: 'Moldova',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'MD',
+        displayCode: 'Moldova',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'MD0',
+        displayCode: 'Moldova',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'NL',
+        displayCode: 'Netherlands',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'NL0',
+        displayCode: 'Netherlands',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'NO',
+        displayCode: 'Norway',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'NO0',
+        displayCode: 'Norway',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'PL',
+        displayCode: 'Poland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'PL0',
+        displayCode: 'Poland',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'PT',
+        displayCode: 'Portugal',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'PT0',
+        displayCode: 'Portugal',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'RU',
+        displayCode: 'Russia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'RU0',
+        displayCode: 'Russia',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'ES',
+        displayCode: 'Spain',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'ES0',
+        displayCode: 'Spain',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'SE',
+        displayCode: 'Sweden',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'SE0',
+        displayCode: 'Sweden',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'UA',
+        displayCode: 'Ukraine',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'UA0',
+        displayCode: 'Ukraine',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'UK',
+        displayCode: 'United Kingdom',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'UK0',
+        displayCode: 'United Kingdom',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'KS',
+        displayCode: 'Kosovo',
+        measure: 'null',
+        verbose: 'null'
+      },
+      {
+        code: 'KS0',
+        displayCode: 'Kosovo',
+        measure: 'null',
+        verbose: 'null'
       },
       {
         code: 'RS1',
@@ -26,57 +519,56 @@ module.exports = {
         code: 'RS3',
         displayCode: 'Serbia',
         measure: 'nothing',
-        verbose: 'Temperature Belgrade'
+        verbose: 'CGES'
       },
       {
-        code: 'RS4',
-        displayCode: 'Serbia',
+        code: 'AL1',
+        displayCode: 'Albania',
         measure: 'nothing',
-        verbose: 'Temperature Novi Sad'
+        verbose: 'EMS'
       },
-      // should do the rest @ end of file
-      // {
-      //   code: 'RS1',
-      //   displayCode: 'Serbia',
-      //   measure: 'nothing',
-      //   verbose: 'EMS'
-      // },
-      // {
-      //   code: 'RS1',
-      //   displayCode: 'Serbia',
-      //   measure: 'nothing',
-      //   verbose: 'EMS'
-      // },
-      // {
-      //   code: 'RS1',
-      //   displayCode: 'Serbia',
-      //   measure: 'nothing',
-      //   verbose: 'EMS'
-      // },
-      // {
-      //   code: 'RS1',
-      //   displayCode: 'Serbia',
-      //   measure: 'nothing',
-      //   verbose: 'EMS'
-      // },
-      // {
-      //   code: 'RS1',
-      //   displayCode: 'Serbia',
-      //   measure: 'nothing',
-      //   verbose: 'EMS'
-      // },
-      // {
-      //   code: 'RS1',
-      //   displayCode: 'Serbia',
-      //   measure: 'nothing',
-      //   verbose: 'EMS'
-      // },
-      // {
-      //   code: 'RS1',
-      //   displayCode: 'Serbia',
-      //   measure: 'nothing',
-      //   verbose: 'EMS'
-      // },
+      {
+        code: 'AL2',
+        displayCode: 'Albania',
+        measure: 'nothing',
+        verbose: 'OST'
+      },
+      {
+        code: 'ME1',
+        displayCode: 'Montenegro',
+        measure: 'nothing',
+        verbose: 'EMS'
+      },
+      {
+        code: 'ME2',
+        displayCode: 'Montenegro',
+        measure: 'nothing',
+        verbose: 'CGES'
+      },
+      {
+        code: 'BG1',
+        displayCode: 'Bulgaria',
+        measure: 'nothing',
+        verbose: 'ESO'
+      },
+      {
+        code: 'BG2',
+        displayCode: 'Bulgaria',
+        measure: 'nothing',
+        verbose: 'TEIAS'
+      },
+      {
+        code: 'TR1',
+        displayCode: 'Turkey',
+        measure: 'nothing',
+        verbose: 'ESO'
+      },
+      {
+        code: 'TR2',
+        displayCode: 'Turkey',
+        measure: 'nothing',
+        verbose: 'TEIAS'
+      }
       
        
     ], {});
@@ -90,48 +582,3 @@ module.exports = {
   }
 };
 
-
-
-// # id, code, displayCode, measure, automaticallyUpdated, createdAt, updatedAt, verbose
-// '29', 'AL', 'Albania', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '30', 'AT', 'Austria', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '31', 'BA', 'Bosnia and Herzegovina', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '32', 'BG', 'Bulgaria', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '33', 'HR', 'Croatia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '34', 'CZ', 'Czech Republic', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '35', 'MK', 'N. Macedonia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '36', 'DE', 'Germany', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '37', 'GR', 'Greece', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '38', 'HU', 'Hungary', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '39', 'ME', 'Montenegro', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '40', 'RO', 'Romania', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '41', 'RS', 'Serbia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '42', 'SK', 'Slovakia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '43', 'SI', 'Slovenia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '44', 'TR', 'Turkey', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '45', 'IT', 'Italy', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '46', 'CH', 'Switzerland', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '47', 'BY', 'Belarus', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '48', 'BE', 'Belgium', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '49', 'CY', 'Cyprus', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '50', 'DK', 'Denmark', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '51', 'EE', 'Estonia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '52', 'FI', 'Finland', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '53', 'FR', 'France', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '54', 'IE', 'Ireland', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '55', 'LV', 'Latvia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '56', 'LT', 'Lithuania', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '57', 'LU', 'Luxembourg', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '58', 'MT', 'Malta', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '59', 'MD', 'Moldova', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '60', 'NL', 'Netherlands', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '61', 'NO', 'Norway', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '62', 'PL', 'Poland', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '63', 'PT', 'Portugal', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '64', 'RU', 'Russia', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '65', 'ES', 'Spain', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '66', 'SE', 'Sweden', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '67', 'UA', 'Ukraine', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '68', 'UK', 'United Kingdom', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '69', 'KS', 'Kosovo', NULL, '0', '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
-// '70', 'AL', 'Albania', '', NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', NULL
