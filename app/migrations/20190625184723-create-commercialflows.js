@@ -36,7 +36,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       value: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10,3)
       },
       automaticallyUpdated: {
         type: Sequelize.INTEGER
