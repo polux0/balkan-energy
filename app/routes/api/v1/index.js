@@ -8,9 +8,10 @@ module.exports = (app) => {
     message: 'Auction daily route!',
   }));
 
-  app.get('/api/auction/daily/', controllers.auctionController.list)
-  app.post('/api/auction/daily/create', controllers.auctionController.create)
-  app.get('/api/auction/daily/import', controllers.auctionController.import)
+  app.get('/api/auction/daily/', controllers.auctionDailyController.list)
+  app.post('/api/auction/daily/create', controllers.auctionDailyController.create)
+  app.get('/api/auction/daily/import', controllers.auctionDailyController.import)
+  app.get('/api/auction/monthly/import', controllers.auctionMonthlyController.import)
   app.get('/api/commercial/dayahead/import', controllers.commercialFlowsDayAheadController.import)
   app.get('/api/commercial/import', controllers.commercialFlowsController.import)
   app.get('/api/load/realized', controllers.loadRealizedController.list)

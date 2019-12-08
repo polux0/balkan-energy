@@ -31,34 +31,17 @@ const {country} = require('./models');
 const {commercialflows} = require('./models')
 const {auctionDaily} = require('./models')
 
-//ftp test; 
-
-const ftpTest = require('./utils/ftp');
-const anotherFtp = require('./utils/testFtp');
-
-const auctionTest = require('./utils/scripts/auctions')
-
-
 require('./routes/api/v1/')(app);
 
-app.get('/', async (req, res) =>
-{
-
-    await ftpTest.fetch('auction-update-test', 'auctions-auto')
-    await auctionTest.importMe();
-    res.status(200).json('/ route request successfull');
-    
+app.get('/', async (req, res) =>{
+  res.status(200).json('/ route request successfull');   
 });
 
 app.get('/ftp', async (req, res) => {
-
-  await anotherFtp.fetch('auction-update-test', 'auctions-auto')
-  res.status(200).json('ftp-end-point is all right');
+  res.status(200).json('/ftp route request sucessfull');
 })
 app.get('/test', async (req, res) => {
-  let foundOne = await auctionDaily.findOne({where:{timestamp: '2019-07-01 00:00:00'}})
-  console.log('timestamp of foundOne: ', foundOne.timestamp)
-  res.status(200).json(foundOne)
+  res.status(200).json('/test route request successfull')
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 

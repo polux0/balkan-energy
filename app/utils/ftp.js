@@ -3,7 +3,7 @@
 const ftp = require('basic-ftp')
 const {changes} = require('../models/')
 
-async function fetch(location, filename){
+async function fetch(location, filename, production){
 
     let result = null;
     const client = new ftp.Client()
@@ -65,8 +65,17 @@ async function fetch(location, filename){
 
         }
 
-        await client.downloadDir(`utils/scripts/${location}`)
-        return result
+        if(production === 1)
+        {
+            await client.downloadDir(`utils/scripts/data/production/${location}`)
+            return result
+
+        }
+        else {
+            await client.downloadDir(`utils/scripts/data/sandbox/${location}`)
+            return result
+        }
+        
 
     } catch (error) {
         client.close()

@@ -1,4 +1,5 @@
-const auctionController = require('./auctionController');
+const auctionDailyController = require('./auctionDailyController');
+const auctionMonthlyController = require('./auctionMonthlyController');
 const loadRealizedController = require('./loadRealizedController');
 const loadForecastController = require('./loadForecastController');
 const changesController = require('./changesController');
@@ -7,7 +8,8 @@ const commercialFlowsController = require('./commercialFlowsController');
 
 module.exports = {
 
-    auctionController,
+    auctionDailyController,
+    auctionMonthlyController,
     loadRealizedController,
     loadForecastController,
     changesController,

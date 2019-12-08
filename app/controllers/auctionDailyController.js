@@ -1,18 +1,58 @@
-const {commercialflows, changes} = require('../models');
+'use strict;'
+
+const {auctionDaily, changes} = require('../models');
 const ftp = require('../utils/ftp');
+const auctionDailyImport = require('../utils/scripts/source/auctions-daily');
+
 const moment = require('moment');
-const commercialImport = require('../utils/scripts/source/commercial-flows')
 
 module.exports = 
 {
     
+    async create(req, res)
+    {   
+    
+        let result = null;
+
+        try
+        {
+            result = await auctionDaily.create
+            (
+                {
+                    firstCountryId: req.body.firstCountryId,
+                    secondCountryId: req.body.secondCountryId,
+                    code: req.body.code,
+                    displayCode: req.body.displayCode,
+                    //fixed for now; 
+                    timestamp: moment(new Date()).format("YYYY-MM-DD HH:mm:ss"),
+                    //
+                    capacity: req.body.capacity,
+                    atc: req.body.atc,
+                    value: req.body.value,
+                    measure1: req.body.measure1,
+                    measure2: req.body.measure2
+                }
+            );
+
+        } 
+        catch (error) 
+        {
+
+            return res.status(400).json(error);
+
+        }
+
+        return res.status(200).json(result);
+    },
+    
+
     async list(req, res)
     {
         let result = null;
         
         try
         {
-            result = await commercialflows.commercialflows({where:{countryId:36}});
+            result = await auctionDaily.findAll();
             
         }
         catch (error)
@@ -25,6 +65,7 @@ module.exports =
         return res.status(200).json(result);
 
     },
+
     async import(req, res)
     {
         let result = null
@@ -32,11 +73,11 @@ module.exports =
 
         try
         {
-            result = await ftp.fetch('commercial-total', 'commercial-total', 1)
+            result = await ftp.fetch('auctions-auto', 'auctions-auto', 1)
             result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
             result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
             if(result.file_should_be_imported == 'yes'){
-                await commercialImport.importMe()
+                await auctionDailyImport.importMe()
                 result.file_imported = 'yes';
                 final = await changes.create(result)
                 return res.status(200).json(final);

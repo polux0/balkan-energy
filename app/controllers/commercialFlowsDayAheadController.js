@@ -1,7 +1,7 @@
 'use strict;'
 
 const {commercialflowsdayahead, changes} = require('../models');
-const commercialflowsdayaheadTest = require('../utils/scripts/commercial-flows-dayahead');
+const commercialflowsdayaheadTest = require('../utils/scripts/source/commercial-flows-dayahead');
 const ftp = require('../utils/ftp');
 
 
@@ -36,7 +36,7 @@ module.exports =
 
         try
         {
-            result = await ftp.fetch('commercial-dayahead-update-test', 'commercial-dayahead')
+            result = await ftp.fetch('commercial-dayahead', 'commercial-dayahead', 1)
             result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
             result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
             if(result.file_should_be_imported == 'yes'){
