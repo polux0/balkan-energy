@@ -3,6 +3,7 @@ const loadRealizedController = require('./loadRealizedController');
 const loadForecastController = require('./loadForecastController');
 const changesController = require('./changesController');
 const commercialFlowsDayAheadController = require('./commercialFlowsDayAheadController')
+const commercialFlowsController = require('./commercialFlowsController');
 
 module.exports = {
 
@@ -10,6 +11,7 @@ module.exports = {
     loadRealizedController,
     loadForecastController,
     changesController,
-    commercialFlowsDayAheadController
+    commercialFlowsDayAheadController,
+    commercialFlowsController
     
 };
