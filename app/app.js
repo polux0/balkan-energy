@@ -26,11 +26,6 @@ const port = 3001
 
 app.use(bodyParser.json());
 
-
-const {country} = require('./models');
-const {commercialflows} = require('./models')
-const {auctionDaily} = require('./models')
-
 require('./routes/api/v1/')(app);
 
 app.get('/', async (req, res) =>{

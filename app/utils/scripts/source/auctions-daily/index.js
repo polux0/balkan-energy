@@ -18,7 +18,7 @@ async function compare(object1){
         mapToModel:true
       });
 
-      if(Object.keys(objectComparedTo).length === 0){
+      if(Object.keys(objectComparedTo).length === 0 && !objectComparedTo){
         return auctionDaily.create(object1)
       }      
       else if(object1.capacity !== objectComparedTo[0].dataValues.capacity || object1.value !== objectComparedTo[0].dataValues.value){
@@ -51,7 +51,7 @@ headers.map((header, counter) => {
 
     if(header.startsWith('capacity')){
 
-      let countries = header.substring(header.length - 4, header.length);
+      let countries = header.substring(header.length - 6, header.length);
 
       let derivedCountries = `price${countries}`;
 
@@ -67,7 +67,7 @@ headers.map((header, counter) => {
            {
               where:
               {
-                code:derivedCountries.substring(derivedCountries.length-4, derivedCountries.length-2)
+                code:derivedCountries.substring(derivedCountries.length-6, derivedCountries.length-3)
               }
 
             });
@@ -76,7 +76,7 @@ headers.map((header, counter) => {
             {
               where:
               {
-                code: derivedCountries.substring(derivedCountries.length-2, derivedCountries.length)
+                code: derivedCountries.substring(derivedCountries.length-3, derivedCountries.length)
               }
 
             });
