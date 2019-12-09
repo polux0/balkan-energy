@@ -16,7 +16,7 @@ module.exports = {
     migrationStorageTableName: 'migrations',
     pool: 
     {
-      max: 10,
+      max: 1000,
       min: 0,
       acquire: 30000,
       idle: 10000

@@ -16,6 +16,8 @@
 // 7. production per block? ( new one ) -> default value 0, not NULL; * 
 // 8. maintances ( new one ) ovo bi trebalo da bude vezano za production per block;
 
+const auctionDailyImport = require('./utils/scripts/source/auctions-daily');
+
 'use strict';
 
 const express = require('express')
@@ -36,7 +38,9 @@ app.get('/ftp', async (req, res) => {
   res.status(200).json('/ftp route request sucessfull');
 })
 app.get('/test', async (req, res) => {
-  res.status(200).json('/test route request successfull')
+
+  let result = await auctionDailyImport.importMe()
+  res.status(200).json(result)
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 

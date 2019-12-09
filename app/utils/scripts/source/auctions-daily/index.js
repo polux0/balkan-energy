@@ -1,6 +1,7 @@
 'use strict';
-
-const filename = "/src/utils/scripts/data/production/auctions-auto/auctions-auto.xls";
+// changed filename to sandbox in order to test it;
+const moment = require('moment');
+const filename = "/src/utils/scripts/data/sandbox/auctions-auto/auctions-auto.xls";
 const XLXS = require('xlsx');
 const workbook = XLXS.readFile(filename);
 const sheetNameList = workbook.SheetNames;
@@ -17,8 +18,9 @@ async function compare(object1){
         model: db.auctionDaily,
         mapToModel:true
       });
-
-      if(Object.keys(objectComparedTo).length === 0 && !objectComparedTo){
+      
+      //change in other scripts as well;
+      if(typeof objectComparedTo[0] === 'undefined'){
         return auctionDaily.create(object1)
       }      
       else if(object1.capacity !== objectComparedTo[0].dataValues.capacity || object1.value !== objectComparedTo[0].dataValues.value){
@@ -43,9 +45,12 @@ let headers = toMap[0].map(header => {
 })
 
 let timestamp = headers[0];
+
+console.log('heades before splice: ', headers);
+
 headers.splice(0,1);
 
-console.log('heades before everything: ', headers);
+console.log('heades after splice: ', headers);
 
 headers.map((header, counter) => {
 
@@ -94,7 +99,8 @@ headers.map((header, counter) => {
              secondCountryId: secondCountryId.id,
              code: `${countries}`,
              displayCode: `auction daily ${countries}`,
-             timestamp: value[timestamp],
+             timestamp: moment(value[timestamp]).format('YYYY-MM-DD HH:mm:ss'),
+             //timestamp: value[timestamp],
              capacity: value[header],
              value: value[derivedCountries]
 
