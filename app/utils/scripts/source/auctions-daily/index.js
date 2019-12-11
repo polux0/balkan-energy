@@ -1,7 +1,7 @@
 'use strict';
 // changed filename to sandbox in order to test it;
 const moment = require('moment');
-const filename = "/src/utils/scripts/data/sandbox/auctions-auto/auctions-auto.xls";
+const filename = "/src/utils/scripts/data/production/auctions-auto/auctions-auto.xls";
 const XLXS = require('xlsx');
 const workbook = XLXS.readFile(filename);
 const sheetNameList = workbook.SheetNames;
@@ -18,7 +18,6 @@ async function compare(object1){
         model: db.auctionDaily,
         mapToModel:true
       });
-      
       //change in other scripts as well;
       if(typeof objectComparedTo[0] === 'undefined'){
         return auctionDaily.create(object1)
@@ -63,6 +62,8 @@ headers.map((header, counter) => {
       
       result.map(async value => {
 
+        console.log('just timestamp' + value[timestamp]);
+
         let firstCountryId, secondCountryId, resultingInsert;
 
         try 
@@ -105,6 +106,9 @@ headers.map((header, counter) => {
              value: value[derivedCountries]
 
         }
+        console.log('timestamp, object by object, standard: \n' + value[timestamp])
+        console.log('timestamp, object by object, formated: \n' + moment(value[timestamp]).format('YYYY-MM-DD HH:mm:ss'))
+
         finalArray.push(compare(object))
       })
 

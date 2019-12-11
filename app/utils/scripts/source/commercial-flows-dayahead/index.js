@@ -1,5 +1,5 @@
 'use strict';
-
+//changed to sandbox in order to test it ( change to production when you are finished)
 var filename = "/src/utils/scripts/data/production/commercial-dayahead/commercial-dayahead.xls";
 const XLXS = require('xlsx');
 const workbook = XLXS.readFile(filename);
@@ -21,12 +21,9 @@ async function compare(object1){
         mapToModel:true
       });
 
-      console.log('need to test object: ' + Object.keys(objectComparedTo));
-
-      if(Object.keys(objectComparedTo).length === 0){
-        console.log('ostvario se uslov :)')
+      if(typeof objectComparedTo[0] === 'undefined'){
         return commercialflowsdayahead.create(object1)
-      }      
+      }     
       else if(object1.value !== objectComparedTo[0].dataValues.value){
         return commercialflowsdayahead.update({value: object1.value}, {where:{id:objectComparedTo[0].dataValues.id}})
       }
@@ -48,14 +45,15 @@ let headers = toMap[0].map(header => header)
 let timestamp = headers[0]
 headers.splice(0,1)
 
+//console.log('headers :\n', headers);
+
 for(let i = 0; i<headers.length; i++){
 
 try {
 
     firstCountryId = await country.findOne({where:{code:headers[i].substring(0, 2)}})
     secondCountryId = await country.findOne({where:{code:headers[i].substring(2, 4)}})
-    //console.log('first country id ( from database ): ', firstCountryId)
-    //console.log('second country id ( from database ): ', secondCountryId)
+
     for(let j = 0; j < result.length; j++){
 
         let object = {
@@ -67,12 +65,9 @@ try {
             timestamp: result[j][timestamp],
             value: isNaN(result[j][headers[i]])? null: result[j][headers[i]] 
         }
-    
-          console.log('I want to see that empty object: \n', object)
-          finalArray.push(compare(object))
+        console.log('value \n' + result[j][headers[i]])
+        finalArray.push(compare(object))
         
-    
-
     }
     
 } 
@@ -82,9 +77,7 @@ catch (error) {
 }
 try
 {
-
 let test = await commercialflowsdayahead.bulkCreate(finalArray);
-
 }
 catch(error){
     console.log('error happend during insertion of commercial flows \n', error);
