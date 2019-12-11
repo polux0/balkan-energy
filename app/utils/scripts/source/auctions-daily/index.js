@@ -26,7 +26,6 @@ async function compare(object1){
         return auctionDaily.update({capacity: object1.capacity, value: object1.value}, {where:{id:objectComparedTo[0].dataValues.id}})
       }
 
-  
 }
 async function importMe(){
 // {header: 1} -> returns header as first array, results as anothers; 
