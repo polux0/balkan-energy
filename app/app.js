@@ -17,6 +17,7 @@
 // 8. maintances ( new one ) ovo bi trebalo da bude vezano za production per block;
 
 const auctionDailyImport = require('./utils/scripts/source/auctions-daily');
+const commercialImport = require('./utils/scripts/source/auctions-daily');
 const commercialDayAheadImport = require('./utils/scripts/source/commercial-flows-dayahead');
 
 'use strict';
@@ -40,8 +41,8 @@ app.get('/ftp', async (req, res) => {
 })
 app.get('/test', async (req, res) => {
 
-  let result = await commercialDayAheadImport.importMe()
-  res.status(200).json(result)
+  await auctionDailyImport.importMe()
+  res.status(200).json('something')
 })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`)) 

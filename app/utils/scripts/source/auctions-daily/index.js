@@ -1,7 +1,7 @@
 'use strict';
 // changed filename to sandbox in order to test it;
 const moment = require('moment');
-const filename = "/src/utils/scripts/data/production/auctions-auto/auctions-auto.xls";
+const filename = "/src/utils/scripts/data/sandbox/auctions-auto/auctions-auto.xls";
 const XLXS = require('xlsx');
 const workbook = XLXS.readFile(filename);
 const sheetNameList = workbook.SheetNames;
@@ -45,11 +45,11 @@ let headers = toMap[0].map(header => {
 
 let timestamp = headers[0];
 
-console.log('heades before splice: ', headers);
+// console.log('heades before splice: ', headers);
 
 headers.splice(0,1);
 
-console.log('heades after splice: ', headers);
+// console.log('heades after splice: ', headers);
 
 headers.map((header, counter) => {
 
@@ -62,31 +62,14 @@ headers.map((header, counter) => {
       
       result.map(async value => {
 
-        console.log('just timestamp' + value[timestamp]);
+        // console.log('just timestamp' + value[timestamp]);
 
         let firstCountryId, secondCountryId, resultingInsert;
 
         try 
         {
-
-           firstCountryId = await country.findOne(
-           {
-              where:
-              {
-                code:derivedCountries.substring(derivedCountries.length-6, derivedCountries.length-3)
-              }
-
-            });
-    
-            secondCountryId = await country.findOne(
-            {
-              where:
-              {
-                code: derivedCountries.substring(derivedCountries.length-3, derivedCountries.length)
-              }
-
-            });
-
+          firstCountryId = await country.findOne({where:{code:derivedCountries.substring(derivedCountries.length-6, derivedCountries.length-3)}});    
+          secondCountryId = await country.findOne({where:{code: derivedCountries.substring(derivedCountries.length-3, derivedCountries.length)}});
         }
         catch (error)
         {
@@ -100,14 +83,16 @@ headers.map((header, counter) => {
              secondCountryId: secondCountryId.id,
              code: `${countries}`,
              displayCode: `auction daily ${countries}`,
-             timestamp: moment(value[timestamp]).format('YYYY-MM-DD HH:mm:ss'),
-             //timestamp: value[timestamp],
+             //timestamp: moment(value[timestamp]).format('YYYY-MM-DD HH:mm:ss'),
+             timestamp: value[timestamp],
              capacity: value[header],
-             value: value[derivedCountries]
+             value: isNaN(value[derivedCountries]) ? null : value[derivedCountries] 
+
+            //  value: isNaN(value[derivedCountries]) ? value[derivedCountries] : null 
 
         }
-        console.log('timestamp, object by object, standard: \n' + value[timestamp])
-        console.log('timestamp, object by object, formated: \n' + moment(value[timestamp]).format('YYYY-MM-DD HH:mm:ss'))
+        // console.log('timestamp, object by object, standard: \n' + value[timestamp])
+        // console.log('timestamp, object by object, formated: \n' + moment(value[timestamp]).format('YYYY-MM-DD HH:mm:ss'))
 
         finalArray.push(compare(object))
       })
@@ -115,7 +100,8 @@ headers.map((header, counter) => {
     }
 })
 try {
-  Promise.all(finalArray)  
+  await auctionDaily.bulkCreate(finalArray)
+  //Promise.all(finalArray)  
 } catch (error) {
   console.log('Error occured while trying to insert')
   throw new Error('Error occured while trying to insert auction daily data')
