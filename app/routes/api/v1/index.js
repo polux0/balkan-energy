@@ -11,6 +11,7 @@ module.exports = (app) => {
   app.get('/api/auction/daily/', controllers.auctionDailyController.list)
   app.post('/api/auction/daily/create', controllers.auctionDailyController.create)
   app.get('/api/auction/daily/import', controllers.auctionDailyController.import)
+  app.get('/api/auction/daily/import/manual', controllers.auctionDailyController.importManual)
   app.get('/api/auction/monthly/import', controllers.auctionMonthlyController.import)
   app.get('/api/auction/yearly/import', controllers.auctionYearlyController.import)
   app.get('/api/commercial/dayahead/import', controllers.commercialFlowsDayAheadController.import)

@@ -3,6 +3,7 @@
 const {auctionDaily, changes} = require('../models');
 const ftp = require('../utils/ftp');
 const auctionDailyImport = require('../utils/scripts/source/auctions-daily');
+const auctionDailyManualImport = require('../utils/scripts/source/auctions-manual');
 
 const moment = require('moment');
 
@@ -78,6 +79,43 @@ module.exports =
             result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
             if(result.file_should_be_imported == 'yes'){
                 await auctionDailyImport.importMe()
+                result.file_imported = 'yes';
+                final = await changes.create(result)
+                return res.status(200).json(final);
+            }
+            else {
+                await changes.create(result)
+                return res.status(200).json('Everything is up to date!')
+            }
+            
+        }
+        catch (error)
+        {   
+            //catch doesn't see this;
+            result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            result.file_should_be_imported = 'yes'
+            result.file_imported = 'no'
+            final = await changes.create(result)
+            console.log('Something is wrong, obviously: ', error)
+            return res.status(400).json(''+error);
+
+        }
+        
+
+    },
+    async importManual(req, res)
+    {
+        let result = null
+        let final = null
+
+        try
+        {
+            result = await ftp.fetch('auctions-manual', 'auctions-manual', 1)
+            result.createdAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            result.updatedAt = moment().format('YYYY-MM-DD HH:mm:ss')
+            if(result.file_should_be_imported == 'yes'){
+                await auctionDailyManualImport.importMe()
                 result.file_imported = 'yes';
                 final = await changes.create(result)
                 return res.status(200).json(final);

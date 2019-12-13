@@ -1,5 +1,5 @@
 'use strict';
-
+//changed to sandbox in order to test it ( change to production when you are finished)
 var filename = "/src/utils/scripts/data/production/commercial-total/commercial-total.xls";
 const XLXS = require('xlsx');
 const workbook = XLXS.readFile(filename);
@@ -22,8 +22,8 @@ async function compare(object1){
       });
 
       if(typeof objectComparedTo[0] === 'undefined'){
-        return commercialflowsdayahead.create(object1)
-      }
+        return commercialflows.create(object1)
+      }     
       else if(object1.value !== objectComparedTo[0].dataValues.value){
         return commercialflows.update({value: object1.value}, {where:{id:objectComparedTo[0].dataValues.id}})
       }
@@ -45,6 +45,8 @@ let headers = toMap[0].map(header => header)
 let timestamp = headers[0]
 headers.splice(0,1)
 
+//console.log('headers :\n', headers);
+
 for(let i = 0; i<headers.length; i++){
 
 try {
@@ -54,17 +56,23 @@ try {
 
     for(let j = 0; j < result.length; j++){
 
+        console.log('first country id: ', firstCountryId.dataValues.id);
+        console.log('second country id: ', secondCountryId.dataValues.id);
+        
         let object = {
 
             firstCountryId: firstCountryId.id,
             secondCountryId: secondCountryId.id,
+            // firstCountryId: firstCountryId.dataValues.id,
+            // secondCountryId: secondCountryId.dataValues.id,
             code: headers[i].substring(0, 2) + headers[i].substring(2, 4),
             displayCode: firstCountryId.displayCode + '-' + secondCountryId.displayCode,
             timestamp: result[j][timestamp],
             value: isNaN(result[j][headers[i]])? null: result[j][headers[i]] 
         }
-    
-          finalArray.push(compare(object))
+        console.log('value \n' + result[j][headers[i]])
+        finalArray.push(compare(object))
+        
     }
     
 } 
@@ -74,9 +82,7 @@ catch (error) {
 }
 try
 {
-
 let test = await commercialflows.bulkCreate(finalArray);
-
 }
 catch(error){
     console.log('error happend during insertion of commercial flows \n', error);

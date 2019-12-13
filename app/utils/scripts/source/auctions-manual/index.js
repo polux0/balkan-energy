@@ -1,7 +1,7 @@
 'use strict';
 // changed filename to sandbox in order to test it;
 const moment = require('moment');
-const filename = "/src/utils/scripts/data/production/auctions-auto/auctions-auto.xls";
+const filename = "/src/utils/scripts/data/production/auctions-manual/auctions-manual.xls";
 const XLXS = require('xlsx');
 const workbook = XLXS.readFile(filename);
 const sheetNameList = workbook.SheetNames;
@@ -48,10 +48,7 @@ let timestamp = headers[0];
 
 headers.splice(0,1);
 
-headers.map(header => {
-  console.log(header.substring(header.length - 6, header.length))
-})
-console.log('heades after splice: ', headers);
+// console.log('heades after splice: ', headers);
 
 headers.map((header, counter) => {
 

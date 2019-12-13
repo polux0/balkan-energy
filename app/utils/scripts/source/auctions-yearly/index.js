@@ -1,6 +1,6 @@
 'use strict';
 
-const filename = "/src/utils/scripts/data/production/auctions-annual/auctions-manual.xls";
+const filename = "/src/utils/scripts/data/production/auctions-annual/auctions-annual.xls";
 const XLXS = require('xlsx');
 const workbook = XLXS.readFile(filename);
 const sheetNameList = workbook.SheetNames;
@@ -105,8 +105,16 @@ headers.map((header, counter) => {
     }
 })
 try {
-  Promise.all(finalArray)  
-} catch (error) {
+   
+    // let firstBulk = finalArray.slice(0, finalArray.length / 20);
+    // let secondBulk = finalArray.slice(finalArray.length / 20, finalArray.length);  
+
+    await auctionYearly.bulkCreate(finalArray)
+    // await auctionYearly.bulkCreate(secondBulk)
+    //await auctionYearly.secondBulk(secondBulk)
+    //await auctionYearly.bulkCreate(secondBulk)
+
+} catch (error) { 
   console.log('Error occured while trying to insert')
   throw new Error('Error occured while trying to insert auction daily data')
 }
